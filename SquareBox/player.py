@@ -1,6 +1,7 @@
 import numpy as np
 import SquareBox.Logger as Logger
 import os
+from copy import deepcopy
 from random import choice
 
 
@@ -48,6 +49,25 @@ class GameState:
                 return "blue"
         return None
 
+    def boardToArray(self,state):
+        r = state.red['positions']
+        g = state.green['positions']
+        b = state.blue['positions']
+        
+        arr = []
+        for i in range(-3,4):
+            for j in range(-3,4):
+                if -i-j in range(-3,4):
+                    if (i,j) in r:
+                        arr.append(1)
+                    elif (i,j) in g:
+                        arr.append(2)
+                    elif (i,j) in b:
+                        arr.append(3)
+                    else:
+                        arr.append(0)
+        return arr
+
 class NeuralNetwork:
     
     def __init__(self):
@@ -84,7 +104,7 @@ class NeuralNetwork:
 
     def predict(self, x):
         result = self.feed_forward(x)
-        return (np.argmax(result),np.amax(result))
+        return np.amax(result)
 
     def train(self, x,y,learning_rate,epochs):
         for i in range(epochs):
@@ -111,8 +131,6 @@ class Layer:
         self.last_act = None
         self.error = None
         self.delta = None
-
-        
 
     def tanh(x,deriv = False):
         if deriv:
@@ -169,23 +187,19 @@ class Player:
         # TODO: Set up state representation.
         self.state = GameState()
         self.colour = colour
-        self.position = self.state.getPlayer(self.colour)['positions']
-        self.goals = self.state.getPlayer(self.colour)['goals']
+        self.goals = self.state.getPlayer(colour)['goals']
 
         self.nn = NeuralNetwork()
-        self.nn.add_layer(Layer(15,16, 'tanh'))
-        self.nn.add_layer(Layer(16,16, 'sigmoid'))
-        self.nn.add_layer(Layer(16,16, 'sigmoid'))
-        self.nn.add_layer(Layer(16,15, 'sigmoid'))
-        self.nn.add_layer(Layer(15,14, 'sigmoid'))
-        self.nn.add_layer(Layer(14,13, 'sigmoid'))
-        self.nn.add_layer(Layer(13,12, 'sigmoid'))
-        self.nn.add_layer(Layer(12,11, 'sigmoid'))
-        self.nn.add_layer(Layer(11,10, 'sigmoid'))
-        self.nn.add_layer(Layer(10,9, 'sigmoid'))
-        self.nn.add_layer(Layer(9,8, 'relu'))
+        self.nn.add_layer(Layer(37,150, 'sigmoid'))
+        self.nn.add_layer(Layer(150,75, 'sigmoid'))
+        self.nn.add_layer(Layer(75,38, 'sigmoid'))
+        self.nn.add_layer(Layer(38,19, 'sigmoid'))
+        self.nn.add_layer(Layer(19,10, 'sigmoid'))
+        self.nn.add_layer(Layer(10,5, 'sigmoid'))
+        self.nn.add_layer(Layer(5,3, 'sigmoid'))
+        self.nn.add_layer(Layer(3,1, 'sigmoid'))
 
-        if all([os.path.isfile('./layer-{0}.txt'.format(i)) for i in range(len(self.nn.layers))]):            
+        if all([os.path.isfile('./layer-{0}.txt'.format(i)) for i in range(len(self.nn.layers))]):
             for i in range(len(self.nn.layers)):
                 self.nn.layers[i].weights = np.loadtxt('layer-{0}.txt'.format(i))
         
@@ -201,34 +215,21 @@ class Player:
         must be represented based on the above instructions for representing 
         actions.
         """
-        while(True):
-            
-            result = {}
-            num_red = len(self.state.red['positions'])
-            num_green = len(self.state.green['positions'])
-            num_blue = len(self.state.blue['positions'])
-            score_red = self.state.red['score']
-            score_green = self.state.green['score']
-            score_blue = self.state.blue['score']
-            
-            if len(self.state.getPlayer(self.colour)['positions']) == 0:
-                return ('PASS', None)
-            
-            for piece in self.state.getPlayer(self.colour)['positions']:
-                near = [0 if x == None else 1 for x in self.enemyNearby(piece,self.colour)]
-                input_i = [self.state.turn,num_red,num_green,num_blue,score_red, score_green, score_blue, piece[0],piece[1]] + near
-                result[piece] = self.nn.predict(input_i)
-            move_i = max(result,key=lambda x: x[1])
-            moves = self.availableMoves(move_i)
-            if not moves[result[move_i][0]]:
-                near = [0 if x == None else 1 for x in self.enemyNearby(move_i,self.colour)]
-                input_i = [self.state.turn,num_red,num_green,num_blue, score_red, score_green, score_blue,move_i[0],move_i[1]] + near
-                self.nn.backprop(input_i,choice([i for i in range(len(moves)) if moves[i]]),0.25)
-            else:
-                Logger.save(self.nn.layers)
-                return moves[result[move_i][0]]
-            
+        evalu = {}
+        for piece in self.state.getPlayer(self.colour)['positions']:
+            for move in self.availableMoves(piece):
+                tmp_state = deepcopy(self.state)
+                if move[0] != "EXIT":
+                    tmp_state.getPlayer(self.colour)['positions'].remove(move[1][0])
+                    tmp_state.getPlayer(self.colour)['positions'].append(move[1][1])
+                else:
+                    tmp_state.getPlayer(self.colour)['positions'].remove(move[1])
+                evalu[move] = self.nn.predict(self.state.boardToArray(tmp_state))
+
+        largest = max(evalu,key=evalu.get)
+
         # TODO: Decide what action to take.
+        return largest
     
 
 
@@ -274,6 +275,7 @@ class Player:
             self.state.getPlayer(colour)['positions'].remove(action[1])
             self.state.getPlayer(colour)['score'] += 1
         self.state.turn += 1
+        
 
     def checkJumpOver(self, colour, coordinates):
         fstpoint = coordinates[0]
@@ -298,20 +300,15 @@ class Player:
         directions = [(-1,0),(0,-1),(1,-1),(1,0),(0,1),(-1,1)]
         for (a,b) in directions:
             if (x+a,y+b) in hexes and not self.state.findTile((x+a,y+b)):
-                result.append(("MOVE",((x,y), (x+a,y+b))))
+                result.append(("MOVE",((x,y), (int(x+a),int(y+b)))))
             elif (x+2*a,y+2*b) in hexes and not self.state.findTile((x+2*a,y+2*b)):
-                result.append(("JUMP",((x,y), (x+2*a,y+2*b))))
-            else:
-                result.append(None)
+                result.append(("JUMP",((x,y), (int(x+2*a),int(y+2*b)))))
+
         if not any(result):
             result.append(("PASS",None))
-        else:
-            result.append(None)
-
         if (x,y) in self.goals:
-            result.append(("EXIT",(x,y)))
-        else:
-            result.append(None)
+            result.append(("EXIT",(int(x),int(y))))
+
                         
         return result
 
