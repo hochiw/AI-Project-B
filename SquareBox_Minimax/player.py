@@ -13,22 +13,21 @@ class GameState:
         self.red = {
             'board': int("0000000000000000000001000000100000010000001000000",2),
             'goals': {(3,-3), (3,-2), (3,-1), (3,0)},
-            'eaten':0,
-            'score':0
+            'score':0,
+            'exit':0
             }
         self.green = {
             'board': int("0001111000000000000000000000000000000000000000000",2),
             'goals':{(-3,3), (-2,3), (-1,3), (0,3)},
-            'eaten':0,
-            'score':0
+            'score':0,
+            'exit':0
             }
         self.blue = {
             'board': int("0000000000000000000000000001000001000001000001000",2),
             'goals':{(-3,0),(-2,-1),(-1,-2),(0,-3)},
-            'eaten':0,
-            'score':0
+            'score':0,
+            'exit':0
             }
-        self.turns = 0
         self.last_move = []
 
     # Function that converts coordinate to bitboard index.
@@ -112,11 +111,11 @@ class GameState:
 
     # Check if there is a winner.
     def winner(self):
-        if self.red['score'] == 4:
+        if self.red['exit'] == 4:
             return "red"
-        elif self.green['score'] == 4:
+        elif self.green['exit'] == 4:
             return "green"
-        elif self.blue['score'] == 4:
+        elif self.blue['exit'] == 4:
             return "blue"
         else:
             return None
@@ -124,9 +123,15 @@ class GameState:
     # Function that undo the last move.
     def undo(self):
         dic = self.last_move.pop()
-        self.red['board'] = dic['red']
-        self.green['board'] = dic['green']
-        self.blue['board'] = dic['blue']
+        self.red['board'] = dic['red_board']
+        self.red['score'] = dic['red_score']
+        self.red['exit'] = dic['red_exit']
+        self.green['board'] = dic['green_board']
+        self.green['score'] = dic['green_score']
+        self.green['exit'] = dic['green_exit']
+        self.blue['board'] = dic['blue_board']
+        self.blue['score'] = dic['blue_score']
+        self.blue['exit'] = dic['blue_exit']
 
     # Function that executes piece movement.
     def move(self,lst,fst,secd):
@@ -161,15 +166,21 @@ class GameState:
     def updateState(self, colour, action):
         # Store the move.
         self.last_move.append({
-            "red":self.red['board'],
-            "green":self.green['board'],
-            "blue":self.blue['board']
+            "red_board":self.red['board'],
+            "red_score":int(self.red['score']),
+            "red_exit":int(self.red['exit']),
+            "green_board":self.green['board'],
+            "green_score":int(self.green['score']),
+            "green_exit":int(self.green['exit']),
+            "blue_board":self.blue['board'],
+            "blue_score":int(self.blue['score']),
+            "blue_exit":int(self.blue['exit']),
         })
 
         # MOVE.
         if action[0] == "MOVE":
             self.getPlayer(colour)['board'] = self.move(self.getPlayer(colour)['board'], action[1][0],action[1][1])
-
+            self.getPlayer(colour)['score'] -= 2
         # JUMP.
         if action[0] == "JUMP":
             # Check if there's a piece in between the jumps.
@@ -180,8 +191,9 @@ class GameState:
                     # Flip the piece.
                     self.getPlayer(check[0])['board'] = self.addrmPiece(self.getPlayer(check[0])['board'],check[1])
                     self.getPlayer(colour)['board'] = self.addrmPiece(self.getPlayer(colour)['board'],check[1],True)
-                    self.getPlayer(colour)['eaten'] += 1
-                    self.getPlayer(check[0])['eaten'] -= 1
+                    self.getPlayer(check[0])['score'] -= 1
+                    self.getPlayer(colour)['score'] += 1
+
                 # Update the jumped position.
                 self.getPlayer(colour)['board'] = self.move(self.getPlayer(colour)['board'], action[1][0],action[1][1])
 
@@ -189,10 +201,9 @@ class GameState:
         if action[0] == "EXIT":
             # Remove the piece from the board and update the player score.
             self.getPlayer(colour)['board'] = self.addrmPiece(self.getPlayer(colour)['board'],action[1])
-            self.getPlayer(colour)['score'] += 1
+            self.getPlayer(colour)['score'] += 10
+            self.getPlayer(colour)['exit'] += 10
 
-        # Count the number of turns.
-        self.turns += 1
 
 
     # Function that checks if there's a piece in between
@@ -221,7 +232,7 @@ class GameState:
           + abs(a[1] - b[1])) / 2
 
 class Player:
-    def __init__(self, colour, exploration_rate = 0.33, learning_rate = 0.5, discount_factor= 0.01):
+    def __init__(self, colour):
 
         """
         This method is called once at the beginning of the game to initialise
@@ -256,30 +267,32 @@ class Player:
         for move in self.state.availableMoves(self.colour):
             # Update the state, pass the modified state to minimax, then undo.
             self.state.updateState(self.colour, move)
-            value = self.minimax(self.state, self.colour, 4, True, -sys.maxsize - 1, sys.maxsize)
+            value = self.minimax(self.state, self.colour, 2, True, -sys.maxsize - 1, sys.maxsize)
             self.state.undo()
 
             # Give each state a score.
             result[move] = value
-
         # Return the move with the best score or return PASS if no move is
         # available.
         return max(result, key=result.get) if len(result) != 0 else ('PASS',None)
 
     # Minimax algorithm
-    def minimax(self,state, colour, depth, maxPlayer, a, b):
+    def minimax(self, state, colour, depth, maxPlayer, a, b, score = None, exit = None):
+        """
         # Check if it is a terminal state .
         if state.winner():
             # Return max score if the player wins
             # or return minimum score other players win.
             if state.winner() == colour:
-                return sys.maxsize
+                return 50000
             else:
-                return -sys.maxsize - 1
+                return -50000
+        """
 
         # Evaluate the board if it reaches the maximum depth
-        if depth == 0:
-            return self.evaluateBoard(state, colour)
+        if depth == 0 or state.winner():
+
+            return self.evaluateBoard(colour, score ,exit)
 
         # Check the max
         if maxPlayer:
@@ -290,16 +303,24 @@ class Player:
                 # Update the state, pass the modified state to the minimax algorithm
                 # with a lower depth, then undo
                 state.updateState(move[1],move[0])
-                value = self.minimax(state, colour, depth - 1, False, a, b)
+                score = {"red":state.red['score'],
+                "green":state.green['score'],
+                "blue":state.blue['score']}
+                exit = {"red":state.red['exit'],
+                "green":state.green['exit'],
+                "blue":state.blue['exit']}
+                value = self.minimax(state, colour, depth - 1, False, a, b, score, exit)
                 state.undo()
                 # Compare the best value and the value it gets from minimax
                 best_value = max(best_value, value)
 
+                # Ignore the branch if alpha is bigger than beta
+                if best_value >= b:
+                    break
                 # Update the alpha value
                 a = max(a, best_value)
-                # Ignore the branch if alpha is bigger than beta
-                if b <= a:
-                    break
+
+
             return best_value
         # Check the min
         else:
@@ -310,34 +331,42 @@ class Player:
                 # Update the state, pass the modified state to the minimax algorithm
                 # with a lower depth, then undo
                 state.updateState(move[1],move[0])
-                value = self.minimax(state, colour, depth - 1, True, a, b)
+                score = {"red":state.red['score'],
+                "green":state.green['score'],
+                "blue":state.blue['score']}
+                exit = {"red":state.red['exit'],
+                "green":state.green['exit'],
+                "blue":state.blue['exit']}
+                value = self.minimax(state, colour, depth - 1, True, a, b,  score, exit)
                 state.undo()
                 # Compare the best value and the value it gets from minimax
                 best_value = min(best_value, value)
+
+                # Ignore the branch if alpha is bigger than beta
+                if best_value <= a:
+                    break
+
                 # Update the beta value
                 b = min(b, best_value)
-                # Ignore the branch if alpha is bigger than beta
-                if b <= a:
-                    break
 
             return best_value
 
     # The heuristic function used to evaluate the board
-    def evaluateBoard(self, state, colour_i):
+    def evaluateBoard(self, colour_i, score, exit):
         # Initialise the score
-        score = 0
+        score_i = 0
         colours = ['red','green','blue']
         for colour in colours:
             if colour == colour_i:
-                # Check the number of pieces the player has 
-                piece = len([1 for i in list("{:049b}".format(state.getPlayer(colour)['board'])) if i == "1"])
-                score += piece * 100
-                score += state.getPlayer(colour)['score'] * 100000000
+                # Check the number of pieces the player has
+                # piece = len([1 for i in list("{:049b}".format(state.getPlayer(colour)['board'])) if i == "1"])
+                score_i += score[colour]
+                score_i += exit[colour]
             else:
-                score -= piece
-                score -= state.getPlayer(colour)['score']
+                score_i -= score[colour]
+                score_i -= exit[colour]
 
-        return score
+        return score_i
 
 
     def update(self, colour, action):
