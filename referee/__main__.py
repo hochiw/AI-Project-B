@@ -5,9 +5,16 @@ and conduct a game of Chexers between them.
 
 import time
 
+
 from referee.game import Chexers, IllegalActionException
 from referee.player import PlayerWrapper, ResourceLimitException, set_space_line
 from referee.options import get_options
+import cProfile, pstats
+
+profiler = cProfile.Profile()    # create profiler
+profiler.enable()                # start profiling
+
+
 
 def main():
     # Parse command-line options into a namespace for use throughout this
@@ -26,6 +33,12 @@ def main():
 
         # Play the game!
         play(p_R, p_G, p_B, options)
+
+        profiler.disable()               # end profiling
+
+        with open('profile.txt', 'w') as fo: # open a file to print the stats
+            pstat_profile = pstats.Stats(profiler, stream=fo) # create a pstats object from the profile bound to a file stream
+            pstat_profile.print_stats() # print stats to a file
     
     # In case the game ends in an abnormal way, print a clean error
     # message for the user (rather than a trace).

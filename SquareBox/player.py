@@ -68,6 +68,11 @@ class GameState:
                         arr.append(0)
         return arr
 
+    def tileDistance(self,a,b):
+        return (abs(a[0] - b[0]) 
+          + abs(a[0] + a[1] - b[0] - b[1])
+          + abs(a[1] - b[1])) / 2
+
 class NeuralNetwork:
     
     def __init__(self):
@@ -190,20 +195,14 @@ class Player:
         # TODO: Set up state representation.
         self.state = GameState()
         self.colour = colour
-        self.last_move = None
         self.goals = self.state.getPlayer(colour)['goals']
 
         self.nn = NeuralNetwork()
-        self.nn.add_layer(Layer(37,500, 'sigmoid'))
-        self.nn.add_layer(Layer(500,500, 'sigmoid'))
-        self.nn.add_layer(Layer(500,250, 'sigmoid'))
-        self.nn.add_layer(Layer(250,150, 'sigmoid'))
-        self.nn.add_layer(Layer(150,75, 'sigmoid'))
-        self.nn.add_layer(Layer(75,38, 'sigmoid'))
-        self.nn.add_layer(Layer(38,19, 'sigmoid'))
-        self.nn.add_layer(Layer(19,10, 'sigmoid'))
-        self.nn.add_layer(Layer(10,5, 'sigmoid'))
-        self.nn.add_layer(Layer(5,3, 'relu'))
+        self.nn.add_layer(Layer(37,84, 'sigmoid'))
+        self.nn.add_layer(Layer(84,84, 'sigmoid'))
+        self.nn.add_layer(Layer(84,84, 'sigmoid'))
+        self.nn.add_layer(Layer(84,84, 'sigmoid'))
+        self.nn.add_layer(Layer(84,5, 'sigmoid'))
 
         if all([os.path.isfile('./layer-{0}.txt'.format(i)) for i in range(len(self.nn.layers))]):
             for i in range(len(self.nn.layers)):
@@ -226,8 +225,6 @@ class Player:
             return ('PASS',None)
         
         for piece in self.state.getPlayer(self.colour)['positions']:
-            if len(self.availableMoves(piece)) == 0:
-                continue
             for move in self.availableMoves(piece):
                 tmp_state = deepcopy(self.state)
                 if move[0] != "EXIT" and move[0] != "PASS":
@@ -235,16 +232,18 @@ class Player:
                     tmp_state.getPlayer(self.colour)['positions'].append(move[1][1])
 
                     if any([i in self.goals for i in tmp_state.getPlayer(self.colour)['positions']]):
-                        self.nn.backprop(self.state.boardToArray(tmp_state),2,0.25)
-                        
-                    if self.last_move:
-                        if (move[1][1] == self.last_move[1][0]):
-                            self.nn.backprop(self.state.boardToArray(tmp_state),0,0.5)
-                else:
+                        self.nn.backprop(self.state.boardToArray(tmp_state),4,0.05)
+
+                    for i in self.goals:
+                        if self.state.tileDistance(move[1][1],i) < self.state.tileDistance(move[1][0],i):
+                            self.nn.backprop(self.state.boardToArray(tmp_state),4,0.05)                  
+                    
+                elif move[0] == "EXIT":
                     tmp_state.getPlayer(self.colour)['positions'].remove(move[1])
                 evalu[move] = self.nn.predict(self.state.boardToArray(tmp_state))
 
         largest = max(evalu,key=evalu.get)
+        self.nn.backprop(self.state.boardToArray(tmp_state),2,0.25)
         self.last_move = largest
 
         # TODO: Decide what action to take.
@@ -287,9 +286,9 @@ class Player:
                     self.state.getPlayer(colour)['positions'].append(check[1])
 
                 if (check[0] == self.colour and colour != self.colour):
-                    self.nn.backprop(self.state.boardToArray(self.state), 0, 0.25)
+                    self.nn.backprop(self.state.boardToArray(self.state), 0, 0.05)
                 elif (check[0] != self.colour and colour == self.colour):
-                    self.nn.backprop(self.state.boardToArray(self.state), 2, 0.5)
+                    self.nn.backprop(self.state.boardToArray(self.state), 4, 0.05)
                     
                 
                 # Update the jumped position
@@ -303,9 +302,9 @@ class Player:
 
             # Train weight
             if colour == self.colour:
-                self.nn.backprop(self.state.boardToArray(self.state), 2, 0.5)
+                self.nn.backprop(self.state.boardToArray(self.state), 4, 0.05)
             else:
-                self.nn.backprop(self.state.boardToArray(self.state), 0, 0.25)
+                self.nn.backprop(self.state.boardToArray(self.state), 0, 0.05)
             Logger.save(self.nn.layers)
             
         self.state.turns += 1
@@ -342,7 +341,7 @@ class Player:
                 result.append(("MOVE",((x,y), (int(x+a),int(y+b)))))
             elif (x+2*a,y+2*b) in hexes and not self.state.findTile((x+2*a,y+2*b)):
                 result.append(("JUMP",((x,y), (int(x+2*a),int(y+2*b)))))
-
+        
         if not any(result):
             result.append(("PASS",None))
         

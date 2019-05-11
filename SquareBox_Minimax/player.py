@@ -53,17 +53,34 @@ class GameState:
         else:
             return None
 
+    def getPositions(self, colour):
+        vertical = [int(283691315109952/(2 ** i)) for i in range(7)]
+        horizontal = [127 * (128 ** i) for i in range(7)]
+        player = self.getPlayer(colour)['board']
+        result = []
+        for i in range(len(vertical)):
+            if (vertical[i] & player) == 0:
+                continue
+            for j in range(len(horizontal)):
+                if (horizontal[j] & player & vertical[i]) == 0:
+                    continue
+                result.append((i -3 ,3 - j))
+        return result
+
+
     # Function that check if there's a piece on a tile.
     def findTile(self,coor):
         # Convert the coordinate into bitboard index.
         index = self.coorToBitboard(coor[0],coor[1])
 
+        mask = 1 << (48 - index)
+
         # Check if the tile is occupied by a colour.
-        if list("{:049b}".format(self.red['board']))[index] == '1':
+        if (self.red['board'] & mask) != 0:
             return "red"
-        if list("{:049b}".format(self.green['board']))[index] == '1':
+        if (self.green['board'] & mask) != 0:
             return "green"
-        if list("{:049b}".format(self.blue['board']))[index] == '1':
+        if (self.blue['board'] & mask) != 0:
             return "blue"
         return None
 
@@ -79,34 +96,28 @@ class GameState:
     # Get the available moves of all the pieces of the given colour.
     def availableMoves(self, colour):
         result = []
-        # Convert the bitboard int into a list of bitboard string.
-        lst = list("{:049b}".format(self.getPlayer(colour)['board']))
-        for i in range(len(lst)):
-            # if a piece is found.
-            if lst[i] == '1':
-                # Convert the index into coordinate.
-                x,y = self.bitboardToCoor(i)
-                # Check if the piece is on top of a goal.
-                if (x,y) in self.getPlayer(colour)['goals']:
-                    result.append(("EXIT",(int(x),int(y))))
-                    continue
+        for x,y in self.getPositions(colour):
+            # Check if the piece is on top of a goal.
+            if (x,y) in self.getPlayer(colour)['goals']:
+                result.append(("EXIT",(int(x),int(y))))
+                continue
 
-                # Range adapted from game.py.
-                ran = range(-3, +3+1)
-                hexes = {(q,r) for q in ran for r in ran if -q-r in ran}
-                # All the directions.
-                directions = [(-1,0),(0,-1),(1,-1),(1,0),(0,1),(-1,1)]
-                for (a,b) in directions:
-                    # Check if the tile in the direction is available.
-                    if (x+a,y+b) in hexes and not self.findTile((x+a,y+b)):
-                        result.append(("MOVE",((x,y), (int(x+a),int(y+b)))))
-                    # If not, check the next tile in the same direction.
-                    elif (x+2*a,y+2*b)in hexes and not self.findTile((x+2*a,y+2*b)):
-                        result.append(("JUMP",((x,y), (int(x+2*a),int(y+2*b)))))
+            # Range adapted from game.py.
+            ran = range(-3, +3+1)
+            hexes = {(q,r) for q in ran for r in ran if -q-r in ran}
+            # All the directions.
+            directions = [(-1,0),(0,-1),(1,-1),(1,0),(0,1),(-1,1)]
+            for (a,b) in directions:
+                # Check if the tile in the direction is available.
+                if (x+a,y+b) in hexes and not self.findTile((x+a,y+b)):
+                    result.append(("MOVE",((x,y), (int(x+a),int(y+b)))))
+                # If not, check the next tile in the same direction.
+                elif (x+2*a,y+2*b)in hexes and not self.findTile((x+2*a,y+2*b)):
+                    result.append(("JUMP",((x,y), (int(x+2*a),int(y+2*b)))))
 
                 # Return PASS if there's no available move.
-                if not any(result):
-                    result.append(("PASS",None))
+            if not any(result):
+                result.append(("PASS",None))
         return result
 
     # Check if there is a winner.
@@ -135,31 +146,27 @@ class GameState:
 
     # Function that executes piece movement.
     def move(self,lst,fst,secd):
-        lst = "{:049b}".format(lst)
-        # Turn both coordinates into bitboard index.
-        index_1 = self.coorToBitboard(fst[0],fst[1])
-        index_2 = self.coorToBitboard(secd[0],secd[1])
 
-        # Construct a bitstring that shows both the original position and
-        # the modified position of the piece.
-        result = ''.join(['1' if i == index_1 or i == index_2 else '0' for i in range(len(list(lst)))])
+        lst = self.addrmPiece(lst, fst)
+        lst = self.addrmPiece(lst, secd, True)
 
         # Return the 'exclusive or' of both bitstrings.
-        return int(lst,2) ^ int(result,2)
+        return lst
 
     # Function that adds or removes a piece from the board.
     def addrmPiece(self,lst,coor, add = False):
-        lst = "{:049b}".format(lst)
         # Convert the coordinate into a bitboard index.
         index = self.coorToBitboard(coor[0],coor[1])
         # Construct a bitstring that shows the position of the piece we want to
-        # add or remove.
-        result = ''.join(['1' if i == index else '0' for i in range(len(list(lst)))])
+        mask = 1 << (48 - index)
         # If we want to add then return the 'or' of the two bitstrings or else
         # return the 'exclusive or ' of the two bitstrings to remove the piece.
         if add:
-            return (int(lst,2) | int(result,2))
-        return (int(lst,2)  ^ int(result,2))
+            lst |= mask
+        else:
+            lst ^= mask
+
+        return lst
 
 
     # Function that handles all the updates that happen on the board.
