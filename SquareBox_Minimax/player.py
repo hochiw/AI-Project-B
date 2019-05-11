@@ -53,19 +53,46 @@ class GameState:
         else:
             return None
 
+    # Function that gets all the pieces on the board
     def getPositions(self, colour):
+        # Bitboards that represent the vertical mask
         vertical = [int(283691315109952/(2 ** i)) for i in range(7)]
+        # Bitboards that represent the horizontal mask
         horizontal = [127 * (128 ** i) for i in range(7)]
         player = self.getPlayer(colour)['board']
         result = []
+
+        # Check if there is a piece on a column
         for i in range(len(vertical)):
+            # Skip the column if there's no piece
             if (vertical[i] & player) == 0:
                 continue
+            # Check the rows if there's a piece on a column
             for j in range(len(horizontal)):
                 if (horizontal[j] & player & vertical[i]) == 0:
                     continue
+                # Add the coordinate of the piece to the result list
                 result.append((i -3 ,3 - j))
+        # Return the result
         return result
+
+    # Function that determines the score of the board
+    def evaluate(self, colour_i):
+        # Initialise the score
+        score = 0
+        colours = ['red','green','blue']
+        for colour in colours:
+            if colour == colour_i:
+                # Check the number of pieces the player has
+                # piece = len([1 for i in list("{:049b}".format(state.getPlayer(colour)['board'])) if i == "1"])
+                score += self.getPlayer(colour_i)['score']
+                score += self.getPlayer(colour_i)['exit']
+            else:
+                score -= self.getPlayer(colour)['score']
+                score -= self.getPlayer(colour)['exit']
+
+        return score
+
 
 
     # Function that check if there's a piece on a tile.
@@ -73,6 +100,7 @@ class GameState:
         # Convert the coordinate into bitboard index.
         index = self.coorToBitboard(coor[0],coor[1])
 
+        # Create mask of the index
         mask = 1 << (48 - index)
 
         # Check if the tile is occupied by a colour.
@@ -134,15 +162,10 @@ class GameState:
     # Function that undo the last move.
     def undo(self):
         dic = self.last_move.pop()
-        self.red['board'] = dic['red_board']
-        self.red['score'] = dic['red_score']
-        self.red['exit'] = dic['red_exit']
-        self.green['board'] = dic['green_board']
-        self.green['score'] = dic['green_score']
-        self.green['exit'] = dic['green_exit']
-        self.blue['board'] = dic['blue_board']
-        self.blue['score'] = dic['blue_score']
-        self.blue['exit'] = dic['blue_exit']
+        self.red = dic['red']
+        self.green = dic['green']
+        self.blue = dic['blue']
+
 
     # Function that executes piece movement.
     def move(self,lst,fst,secd):
@@ -168,20 +191,38 @@ class GameState:
 
         return lst
 
+    # Function that checks if there's a piece in between
+    # the landing position and the original position.
+    def checkJumpOver(self, coordinates):
+        fstpoint = coordinates[0]
+        sndpoint = coordinates[1]
+
+        # Get the tile in between two tiles.
+        midtile = ((fstpoint[0] + sndpoint[0])/2,(fstpoint[1] +sndpoint[1])/2)
+
+        # Check if the midtile is occupied.
+        tile = self.findTile(midtile)
+
+        # Return the colour and the coordinate of the midtile if it's occupied
+        # Or else return None.
+        if tile:
+            return (tile,midtile)
+        return None
+
+    # Helper function that calculates the distance between two tiles.
+    # Adapted from https://www.redblobgames.com/grids/hexagons.
+    def tileDistance(self,a,b):
+        return (abs(a[0] - b[0])
+          + abs(a[0] + a[1] - b[0] - b[1])
+          + abs(a[1] - b[1])) / 2
 
     # Function that handles all the updates that happen on the board.
     def updateState(self, colour, action):
         # Store the move.
         self.last_move.append({
-            "red_board":self.red['board'],
-            "red_score":int(self.red['score']),
-            "red_exit":int(self.red['exit']),
-            "green_board":self.green['board'],
-            "green_score":int(self.green['score']),
-            "green_exit":int(self.green['exit']),
-            "blue_board":self.blue['board'],
-            "blue_score":int(self.blue['score']),
-            "blue_exit":int(self.blue['exit']),
+            "red":{"board":self.red['board'],"goals":self.red['goals'],"score":int(self.red['score']),"exit":int(self.red['exit'])},
+            "green":{"board":self.green['board'],"goals":self.green['goals'],"score":int(self.green['score']),"exit":int(self.green['exit'])},
+            "blue":{"board":self.blue['board'],"goals":self.blue['goals'],"score":int(self.blue['score']),"exit":int(self.blue['exit'])},
         })
 
         # MOVE.
@@ -210,33 +251,6 @@ class GameState:
             self.getPlayer(colour)['board'] = self.addrmPiece(self.getPlayer(colour)['board'],action[1])
             self.getPlayer(colour)['score'] += 10
             self.getPlayer(colour)['exit'] += 10
-
-
-
-    # Function that checks if there's a piece in between
-    # the landing position and the original position.
-    def checkJumpOver(self, coordinates):
-        fstpoint = coordinates[0]
-        sndpoint = coordinates[1]
-
-        # Get the tile in between two tiles.
-        midtile = ((fstpoint[0] + sndpoint[0])/2,(fstpoint[1] +sndpoint[1])/2)
-
-        # Check if the midtile is occupied.
-        tile = self.findTile(midtile)
-
-        # Return the colour and the coordinate of the midtile if it's occupied
-        # Or else return None.
-        if tile:
-            return (tile,midtile)
-        return None
-
-    # Helper function that calculates the distance between two tiles.
-    # Adapted from https://www.redblobgames.com/grids/hexagons.
-    def tileDistance(self,a,b):
-        return (abs(a[0] - b[0])
-          + abs(a[0] + a[1] - b[0] - b[1])
-          + abs(a[1] - b[1])) / 2
 
 class Player:
     def __init__(self, colour):
@@ -299,7 +313,7 @@ class Player:
         # Evaluate the board if it reaches the maximum depth
         if depth == 0 or state.winner():
 
-            return self.evaluateBoard(colour, score ,exit)
+            return state.evaluate(colour)
 
         # Check the max
         if maxPlayer:
@@ -310,13 +324,7 @@ class Player:
                 # Update the state, pass the modified state to the minimax algorithm
                 # with a lower depth, then undo
                 state.updateState(move[1],move[0])
-                score = {"red":state.red['score'],
-                "green":state.green['score'],
-                "blue":state.blue['score']}
-                exit = {"red":state.red['exit'],
-                "green":state.green['exit'],
-                "blue":state.blue['exit']}
-                value = self.minimax(state, colour, depth - 1, False, a, b, score, exit)
+                value = self.minimax(state, colour, depth - 1, False, a, b)
                 state.undo()
                 # Compare the best value and the value it gets from minimax
                 best_value = max(best_value, value)
@@ -338,13 +346,7 @@ class Player:
                 # Update the state, pass the modified state to the minimax algorithm
                 # with a lower depth, then undo
                 state.updateState(move[1],move[0])
-                score = {"red":state.red['score'],
-                "green":state.green['score'],
-                "blue":state.blue['score']}
-                exit = {"red":state.red['exit'],
-                "green":state.green['exit'],
-                "blue":state.blue['exit']}
-                value = self.minimax(state, colour, depth - 1, True, a, b,  score, exit)
+                value = self.minimax(state, colour, depth - 1, True, a, b)
                 state.undo()
                 # Compare the best value and the value it gets from minimax
                 best_value = min(best_value, value)
@@ -357,23 +359,6 @@ class Player:
                 b = min(b, best_value)
 
             return best_value
-
-    # The heuristic function used to evaluate the board
-    def evaluateBoard(self, colour_i, score, exit):
-        # Initialise the score
-        score_i = 0
-        colours = ['red','green','blue']
-        for colour in colours:
-            if colour == colour_i:
-                # Check the number of pieces the player has
-                # piece = len([1 for i in list("{:049b}".format(state.getPlayer(colour)['board'])) if i == "1"])
-                score_i += score[colour]
-                score_i += exit[colour]
-            else:
-                score_i -= score[colour]
-                score_i -= exit[colour]
-
-        return score_i
 
 
     def update(self, colour, action):
