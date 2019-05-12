@@ -107,9 +107,10 @@ class GameState:
     # Get the available moves of all the pieces of the given colour.
     def availableMoves(self, colour):
         result = []
+        player = self.getPlayer(colour)
         for x,y in self.getPositions(colour):
             # Check if the piece is on top of a goal.
-            if (x,y) in self.getPlayer(colour)['goals']:
+            if (x,y) in player['goals']:
                 result.append(("EXIT",(int(x),int(y))))
                 break
 
@@ -133,14 +134,6 @@ class GameState:
     def isValidMove(self, coor):
         ran = range(-3, 4)
         return coor[0] in ran and coor[1] in ran and -coor[0]-coor[1] in ran
-
-
-    # Function that undo the last move.
-    def undo(self):
-        dic = _LAST_MOVE.pop()
-        self.red = dic['red']
-        self.green = dic['green']
-        self.blue = dic['blue']
 
 
     # Function that executes piece movement.
@@ -193,19 +186,18 @@ class GameState:
         for colour in colours:
             #Modify update to record : No of Opponent/our Jumps, No of Exits
             # Adds self ave_dist score
-            if colour == colour_i:
-                if len(self.getPositions(colour)) != 0:
-                    result += self.getPlayer(colour)['score']  * 1000
-                    result -= (self.weights[i] * self.aveDist(colour))
-                    result += self.getPlayer(colour_i)['exit'] * 100
-            else:
-                # Deducts opponent's ave_dist score
-                if len(self.getPositions(colour)) != 0:
-                    result += (self.weights[i] * self.aveDist(colour))
-                    result -= self.getPlayer(colour_i)['score']
-                    result -= self.getPlayer(colour_i)['exit']
+            tmp = 0
+            player = self.getPlayer(colour)
+            if len(self.getPositions(colour)) != 0:
+                result += player['score']
+                result -= (self.weights[i] * self.aveDist(colour))
+                result += player['exit']
 
+            # Make it negative if it's an enemy
+            if colour != colour_i:
+                tmp = -tmp
 
+            result += tmp
         return result
 
 
@@ -215,9 +207,10 @@ class GameState:
     def aveDist(self, colour):
         ave_dist = 0
         #Iterate self pieces and for each piece get min dist then sum all
+        player = self.getPlayer(colour)
         for piece in self.getPositions(colour):
             min_dist = sys.maxsize
-            for goal in self.getPlayer(colour)['goals']:
+            for goal in player['goals']:
                 dist = self.hex_distance(piece,goal)
                 if dist < min_dist:
                     min_dist = dist
@@ -234,15 +227,6 @@ class GameState:
 
     # Function that handles all the updates that happen on the board.
     def updateState(self, colour, action):
-        # Store the move.
-        _LAST_MOVE.append({
-            #"red":{"board":self.red['board'],"goals":self.red['goals'],"score":int(self.red['score']),"exit":int(self.red['exit'])},
-            #"green":{"board":self.green['board'],"goals":self.green['goals'],"score":int(self.green['score']),"exit":int(self.green['exit'])},
-            #"blue":{"board":self.blue['board'],"goals":self.blue['goals'],"score":int(self.blue['score']),"exit":int(self.blue['exit'])},
-            "red":deepcopy(self.red),
-            "green":deepcopy(self.green),
-            "blue":deepcopy(self.blue)
-        })
 
         player = self.getPlayer(colour)
         score = 0
@@ -259,16 +243,18 @@ class GameState:
             if check:
                 # Check if the piece is an enemy piece.
                 if (check[0] != colour):
+                    ck = self.getPlayer(check[0])
                     # Flip the piece.
-                    self.getPlayer(check[0])['board'] = self.addrmPiece(self.getPlayer(check[0])['board'],check[1])
+                    ck['board'] = self.addrmPiece(ck['board'],check[1])
                     player['board'] = self.addrmPiece(player['board'],check[1],True)
                     score_e -= 1
                     score += 1
+                    ck['score'] = score_e
 
                 # Update the jumped position.
                 score += 1
                 player['board'] = self.move(player['board'], action[1][0],action[1][1])
-            self.getPlayer(check[0])['score'] = score_e
+
 
         # EXIT
         if action[0] == "EXIT":
@@ -313,9 +299,10 @@ class Player:
         # Find all the available moves for the player.
         for move in self.state.availableMoves(self.colour):
             # Update the state, pass the modified state to minimax, then undo.
+            self.saveState(self.state)
             self.state.updateState(self.colour, move)
-            value = self.minimax(self.state, self.colour, 2, True, -sys.maxsize - 1, sys.maxsize)
-            self.state.undo()
+            value = self.minimax(self.state, self.colour, 1, True, -sys.maxsize - 1, sys.maxsize)
+            self.loadState(self.state)
 
             # Give each state a score.
             result[move] = value
@@ -341,9 +328,10 @@ class Player:
             for move in state.getAllMoves():
                 # Update the state, pass the modified state to the minimax algorithm
                 # with a lower depth, then undo
+                self.saveState(state)
                 state.updateState(move[1],move[0])
                 value = self.minimax(state, colour, depth - 1, False, a, b)
-                state.undo()
+                self.loadState(state)
                 # Compare the best value and the value it gets from minimax
                 best_value = max(best_value, value)
 
@@ -363,9 +351,10 @@ class Player:
             for move in state.getAllMoves():
                 # Update the state, pass the modified state to the minimax algorithm
                 # with a lower depth, then undo
+                self.saveState(state)
                 state.updateState(move[1],move[0])
                 value = self.minimax(state, colour, depth - 1, True, a, b)
-                state.undo()
+                self.loadState(state)
                 # Compare the best value and the value it gets from minimax
                 best_value = min(best_value, value)
 
@@ -377,6 +366,26 @@ class Player:
                 b = min(b, best_value)
 
             return best_value
+
+    # Save and load states
+    def saveState(self,state):
+        # Store the move.
+        _LAST_MOVE.append({
+            #"red":{"board":self.red['board'],"goals":self.red['goals'],"score":int(self.red['score']),"exit":int(self.red['exit'])},
+            #"green":{"board":self.green['board'],"goals":self.green['goals'],"score":int(self.green['score']),"exit":int(self.green['exit'])},
+            #"blue":{"board":self.blue['board'],"goals":self.blue['goals'],"score":int(self.blue['score']),"exit":int(self.blue['exit'])},
+            "red":deepcopy(state.red),
+            "green":deepcopy(state.green),
+            "blue":deepcopy(state.blue)
+        })
+
+    def loadState(self,state):
+        dic = _LAST_MOVE.pop()
+        state.red = dic['red']
+        state.green = dic['green']
+        state.blue = dic['blue']
+
+
 
 
     def update(self, colour, action):
