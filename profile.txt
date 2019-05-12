@@ -1,28 +1,30 @@
-         10876811 function calls (10737767 primitive calls) in 16.185 seconds
+         176227052 function calls (160963217 primitive calls) in 99.587 seconds
 
    Random listing order was used
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        3    0.000    0.000    0.000    0.000 {method 'extend' of 'bytearray' objects}
       116    0.000    0.000    0.000    0.000 {method 'find' of 'bytearray' objects}
        13    0.000    0.000    0.000    0.000 {method 'translate' of 'bytearray' objects}
        58    0.000    0.000    0.000    0.000 {method 'get' of 'mappingproxy' objects}
        15    0.000    0.000    0.000    0.000 {method 'items' of 'mappingproxy' objects}
         6    0.000    0.000    0.000    0.000 {method 'setter' of 'property' objects}
-  3068179    0.272    0.000    0.272    0.000 {method 'append' of 'list' objects}
+ 15846042    1.661    0.000    1.661    0.000 {method 'append' of 'list' objects}
         5    0.000    0.000    0.000    0.000 {method 'insert' of 'list' objects}
        93    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
-   137325    0.027    0.000    0.027    0.000 {method 'pop' of 'list' objects}
-      194    0.000    0.000    0.000    0.000 {method 'remove' of 'list' objects}
+   238388    0.064    0.000    0.064    0.000 {method 'pop' of 'list' objects}
+      148    0.000    0.000    0.000    0.000 {method 'remove' of 'list' objects}
         2    0.000    0.000    0.000    0.000 {method 'reverse' of 'list' objects}
         7    0.000    0.000    0.000    0.000 {method 'sort' of 'list' objects}
-      131    0.000    0.000    0.000    0.000 {method 'bit_length' of 'int' objects}
-      260    0.000    0.000    0.000    0.000 {built-in method from_bytes}
-      449    0.000    0.000    0.000    0.000 {method 'get' of 'dict' objects}
+       19    0.000    0.000    0.000    0.000 {method 'bit_length' of 'int' objects}
+        2    0.000    0.000    0.000    0.000 {method 'to_bytes' of 'int' objects}
+      259    0.000    0.000    0.000    0.000 {built-in method from_bytes}
+ 32195114    4.765    0.000    4.765    0.000 {method 'get' of 'dict' objects}
        72    0.000    0.000    0.000    0.000 {method 'setdefault' of 'dict' objects}
        61    0.000    0.000    0.000    0.000 {method 'pop' of 'dict' objects}
         5    0.000    0.000    0.000    0.000 {method 'keys' of 'dict' objects}
-      136    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
-      107    0.000    0.000    0.000    0.000 {method 'values' of 'dict' objects}
+   715575    0.115    0.000    0.115    0.000 {method 'items' of 'dict' objects}
+      110    0.000    0.000    0.000    0.000 {method 'values' of 'dict' objects}
        66    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
         2    0.000    0.000    0.000    0.000 {method 'clear' of 'dict' objects}
        37    0.000    0.000    0.000    0.000 {method 'items' of 'collections.OrderedDict' objects}
@@ -35,8 +37,9 @@
        46    0.000    0.000    0.000    0.000 {method '__contains__' of 'frozenset' objects}
         3    0.000    0.000    0.000    0.000 {method 'mro' of 'type' objects}
        21    0.000    0.000    0.000    0.000 {method '__subclasses__' of 'type' objects}
+   715437    0.828    0.000    0.828    0.000 {method '__reduce_ex__' of 'object' objects}
        21    0.000    0.000    0.000    0.000 {method '__subclasshook__' of 'object' objects}
-       76    0.001    0.000    0.001    0.000 {built-in method __new__ of type object at 0x106bbc6b0}
+       76    0.001    0.000    0.001    0.000 {built-in method __new__ of type object at 0x108fb16b0}
        17    0.000    0.000    0.000    0.000 {method 'encode' of 'str' objects}
        30    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
        10    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
@@ -46,7 +49,7 @@
         8    0.000    0.000    0.000    0.000 {method 'lstrip' of 'str' objects}
         1    0.000    0.000    0.000    0.000 {method 'rfind' of 'str' objects}
      2778    0.001    0.000    0.001    0.000 {method 'rstrip' of 'str' objects}
-     1250    0.000    0.000    0.000    0.000 {method 'rpartition' of 'str' objects}
+     1251    0.001    0.000    0.001    0.000 {method 'rpartition' of 'str' objects}
       298    0.000    0.000    0.000    0.000 {method 'strip' of 'str' objects}
        52    0.000    0.000    0.000    0.000 {method 'translate' of 'str' objects}
        36    0.000    0.000    0.000    0.000 {method 'upper' of 'str' objects}
@@ -54,46 +57,48 @@
       174    0.000    0.000    0.000    0.000 {method 'endswith' of 'str' objects}
        67    0.000    0.000    0.000    0.000 {method 'isupper' of 'str' objects}
        54    0.000    0.000    0.000    0.000 {method 'isidentifier' of 'str' objects}
-      528    0.002    0.000    0.002    0.000 {method 'format' of 'str' objects}
+      536    0.002    0.000    0.002    0.000 {method 'format' of 'str' objects}
         7    0.000    0.000    0.000    0.000 {built-in method _warnings._filters_mutated}
-  301/300    0.007    0.000    0.012    0.000 {built-in method builtins.__build_class__}
-   320/12    0.000    0.000    0.106    0.009 {built-in method builtins.__import__}
-       72    0.000    0.000    0.000    0.000 {built-in method builtins.abs}
-   291672    0.048    0.000    0.048    0.000 {built-in method builtins.any}
+  301/300    0.008    0.000    0.015    0.000 {built-in method builtins.__build_class__}
+   320/12    0.000    0.000    0.218    0.018 {built-in method builtins.__import__}
+ 26250371    2.149    0.000    2.149    0.000 {built-in method builtins.abs}
+   527719    0.101    0.000    0.101    0.000 {built-in method builtins.any}
        27    0.000    0.000    0.000    0.000 {built-in method builtins.callable}
       308    0.000    0.000    0.000    0.000 {built-in method builtins.chr}
+        1    0.006    0.006    0.006    0.006 {built-in method builtins.compile}
         1    0.000    0.000    0.000    0.000 {built-in method builtins.dir}
        45    0.000    0.000    0.000    0.000 {built-in method builtins.divmod}
-    140/2    0.005    0.000    0.132    0.066 {built-in method builtins.exec}
-     2259    0.001    0.000    0.001    0.000 {built-in method builtins.getattr}
+    140/2    0.005    0.000    0.284    0.142 {built-in method builtins.exec}
+  1433133    0.730    0.000    0.730    0.000 {built-in method builtins.getattr}
       363    0.000    0.000    0.000    0.000 {built-in method builtins.globals}
-     2542    0.002    0.000    0.002    0.000 {built-in method builtins.hasattr}
-       15    0.000    0.000    0.000    0.000 {built-in method builtins.id}
-     3594    0.001    0.000    0.001    0.000 {built-in method builtins.isinstance}
-  173/139    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+     2541    0.002    0.000    0.002    0.000 {built-in method builtins.hasattr}
+ 23609437    2.590    0.000    2.590    0.000 {built-in method builtins.id}
+   719030    0.215    0.000    0.215    0.000 {built-in method builtins.isinstance}
+715610/715576    0.149    0.000    0.149    0.000 {built-in method builtins.issubclass}
         1    0.000    0.000    0.000    0.000 {built-in method builtins.iter}
-313838/313794    0.036    0.000    0.036    0.000 {built-in method builtins.len}
-    55956    0.020    0.000    0.020    0.000 {built-in method builtins.max}
-   191627    0.065    0.000    0.065    0.000 {built-in method builtins.min}
+6146937/6146893    0.687    0.000    0.687    0.000 {built-in method builtins.len}
+    92270    0.035    0.000    0.035    0.000 {built-in method builtins.max}
+   339412    0.163    0.000    0.163    0.000 {built-in method builtins.min}
        16    0.000    0.000    0.000    0.000 {built-in method builtins.next}
       213    0.000    0.000    0.000    0.000 {built-in method builtins.ord}
-     1073    0.022    0.000    0.022    0.000 {built-in method builtins.print}
+     1140    0.027    0.000    0.027    0.000 {built-in method builtins.print}
        72    0.000    0.000    0.000    0.000 {built-in method builtins.repr}
         9    0.000    0.000    0.000    0.000 {built-in method builtins.round}
       320    0.000    0.000    0.000    0.000 {built-in method builtins.setattr}
         3    0.000    0.000    0.000    0.000 {built-in method builtins.vars}
      1043    0.000    0.000    0.000    0.000 {built-in method _imp.acquire_lock}
      1043    0.000    0.000    0.000    0.000 {built-in method _imp.release_lock}
-        4    0.002    0.001    0.002    0.001 {built-in method _imp.create_builtin}
+        4    0.000    0.000    0.000    0.000 {built-in method _imp.create_builtin}
        57    0.000    0.000    0.000    0.000 {built-in method _imp.is_builtin}
       155    0.000    0.000    0.000    0.000 {built-in method _imp.is_frozen}
-    20/18    0.014    0.001    0.018    0.001 {built-in method _imp.create_dynamic}
-       20    0.003    0.000    0.003    0.000 {built-in method _imp.exec_dynamic}
+    20/18    0.061    0.003    0.066    0.004 {built-in method _imp.create_dynamic}
+       20    0.012    0.001    0.012    0.001 {built-in method _imp.exec_dynamic}
         4    0.000    0.000    0.000    0.000 {built-in method _imp.exec_builtin}
-      130    0.000    0.000    0.000    0.000 {built-in method _imp._fix_co_filename}
-      130    0.021    0.000    0.021    0.000 {built-in method marshal.loads}
+      129    0.000    0.000    0.000    0.000 {built-in method _imp._fix_co_filename}
+        1    0.000    0.000    0.000    0.000 {built-in method marshal.dumps}
+      129    0.022    0.000    0.022    0.000 {built-in method marshal.loads}
        10    0.000    0.000    0.000    0.000 {built-in method sys._getframe}
-      355    1.724    0.005    1.724    0.005 {built-in method gc.collect}
+      367    1.844    0.005    1.844    0.005 {built-in method gc.collect}
       331    0.000    0.000    0.000    0.000 {built-in method _thread.allocate_lock}
       838    0.000    0.000    0.000    0.000 {built-in method _thread.get_ident}
         1    0.000    0.000    0.000    0.000 {built-in method _thread._set_sentinel}
@@ -102,10 +107,12 @@
         2    0.000    0.000    0.000    0.000 {method 'acquire' of '_thread.lock' objects}
         1    0.000    0.000    0.000    0.000 {method '__enter__' of '_thread.lock' objects}
         1    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
-      589    0.006    0.000    0.006    0.000 {built-in method posix.stat}
-       53    0.002    0.000    0.002    0.000 {built-in method posix.getcwd}
-       17    0.001    0.000    0.001    0.000 {built-in method posix.listdir}
+      591    0.008    0.000    0.008    0.000 {built-in method posix.stat}
+       53    0.003    0.000    0.003    0.000 {built-in method posix.getcwd}
+       17    0.008    0.000    0.008    0.000 {built-in method posix.listdir}
+        1    0.000    0.000    0.000    0.000 {built-in method posix.replace}
         1    0.000    0.000    0.000    0.000 {built-in method posix.uname}
+        1    0.000    0.000    0.000    0.000 {built-in method posix.open}
         2    0.000    0.000    0.000    0.000 {built-in method posix.putenv}
         2    0.000    0.000    0.000    0.000 {built-in method posix.unsetenv}
       413    0.000    0.000    0.000    0.000 {built-in method posix.fspath}
@@ -118,84 +125,92 @@
         4    0.000    0.000    0.000    0.000 {method 'split' of '_sre.SRE_Pattern' objects}
         1    0.000    0.000    0.000    0.000 {built-in method atexit.register}
         1    0.000    0.000    0.000    0.000 {built-in method time.time}
-       88    0.000    0.000    0.000    0.000 {built-in method time.sleep}
-      710    0.003    0.000    0.003    0.000 {built-in method time.process_time}
+       91    0.000    0.000    0.000    0.000 {built-in method time.sleep}
+      734    0.003    0.000    0.003    0.000 {built-in method time.process_time}
         1    0.000    0.000    0.000    0.000 {built-in method io.open}
-      130    0.003    0.000    0.003    0.000 {method 'read' of '_io.FileIO' objects}
+      131    0.051    0.000    0.051    0.000 {method 'read' of '_io.FileIO' objects}
+        1    0.000    0.000    0.000    0.000 {method 'write' of '_io.FileIO' objects}
       130    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:35(_new_module)
       238    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:37(_relax_case)
-      163    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:58(__init__)
+      163    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:58(__init__)
       411    0.001    0.000    0.001    0.000 <frozen importlib._bootstrap>:78(acquire)
       411    0.001    0.000    0.001    0.000 <frozen importlib._bootstrap>:103(release)
       163    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:143(__init__)
-      163    0.000    0.000    0.002    0.000 <frozen importlib._bootstrap>:147(__enter__)
+      163    0.000    0.000    0.003    0.000 <frozen importlib._bootstrap>:147(__enter__)
       163    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:151(__exit__)
-      163    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:176(cb)
-      411    0.001    0.000    0.002    0.000 <frozen importlib._bootstrap>:157(_get_module_lock)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:47(_w_long)
+      163    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:176(cb)
+      411    0.002    0.000    0.002    0.000 <frozen importlib._bootstrap>:157(_get_module_lock)
       248    0.000    0.000    0.002    0.000 <frozen importlib._bootstrap>:194(_lock_unlock_module)
-    221/2    0.000    0.000    0.132    0.066 <frozen importlib._bootstrap>:211(_call_with_frames_removed)
-     1362    0.001    0.000    0.001    0.000 <frozen importlib._bootstrap>:222(_verbose_message)
+    222/2    0.000    0.000    0.284    0.142 <frozen importlib._bootstrap>:211(_call_with_frames_removed)
+     1364    0.001    0.000    0.001    0.000 <frozen importlib._bootstrap>:222(_verbose_message)
         4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:232(_requires_builtin_wrapper)
       154    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:307(__init__)
       154    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:311(__enter__)
       616    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:321(<genexpr>)
-      154    0.001    0.000    0.001    0.000 <frozen importlib._bootstrap>:318(__exit__)
-      260    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:52(_r_long)
+      154    0.001    0.000    0.002    0.000 <frozen importlib._bootstrap>:318(__exit__)
+      259    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:52(_r_long)
       159    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:369(__init__)
-      280    0.000    0.000    0.002    0.000 <frozen importlib._bootstrap>:403(cached)
+      280    0.000    0.000    0.003    0.000 <frozen importlib._bootstrap>:403(cached)
       348    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:416(parent)
       154    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:424(has_location)
      1258    0.001    0.000    0.002    0.000 <frozen importlib._bootstrap_external>:59(<listcomp>)
         4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:433(spec_from_loader)
-      154    0.001    0.000    0.004    0.000 <frozen importlib._bootstrap>:504(_init_module_attrs)
-  154/151    0.000    0.000    0.024    0.000 <frozen importlib._bootstrap>:564(module_from_spec)
-    154/2    0.001    0.000    0.133    0.066 <frozen importlib._bootstrap>:651(_load_unlocked)
+      154    0.001    0.000    0.005    0.000 <frozen importlib._bootstrap>:504(_init_module_attrs)
+  154/151    0.001    0.000    0.072    0.000 <frozen importlib._bootstrap>:564(module_from_spec)
+    154/2    0.001    0.000    0.286    0.143 <frozen importlib._bootstrap>:651(_load_unlocked)
       159    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:707(find_spec)
-        4    0.000    0.000    0.002    0.001 <frozen importlib._bootstrap>:728(create_module)
+        4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:728(create_module)
         4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:736(exec_module)
         4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:753(is_package)
-     1258    0.001    0.000    0.003    0.000 <frozen importlib._bootstrap_external>:57(_path_join)
+     1258    0.001    0.000    0.004    0.000 <frozen importlib._bootstrap_external>:57(_path_join)
       155    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:780(find_spec)
-      260    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:63(_path_split)
+      261    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:63(_path_split)
       469    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:843(__enter__)
       469    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:847(__exit__)
-      589    0.000    0.000    0.006    0.000 <frozen importlib._bootstrap_external>:75(_path_stat)
-      159    0.001    0.000    0.020    0.000 <frozen importlib._bootstrap>:870(_find_spec)
+      591    0.000    0.000    0.008    0.000 <frozen importlib._bootstrap_external>:75(_path_stat)
+      159    0.002    0.000    0.033    0.000 <frozen importlib._bootstrap>:870(_find_spec)
         3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:917(_sanity_check)
-    162/2    0.001    0.000    0.133    0.067 <frozen importlib._bootstrap>:936(_find_and_load_unlocked)
-    163/3    0.001    0.000    0.133    0.044 <frozen importlib._bootstrap>:966(_find_and_load)
-        3    0.000    0.000    0.133    0.044 <frozen importlib._bootstrap>:982(_gcd_import)
-   867/87    0.001    0.000    0.106    0.001 <frozen importlib._bootstrap>:997(_handle_fromlist)
-      221    0.000    0.000    0.002    0.000 <frozen importlib._bootstrap_external>:85(_path_is_mode_type)
-      204    0.000    0.000    0.002    0.000 <frozen importlib._bootstrap_external>:94(_path_isfile)
-       17    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:99(_path_isdir)
+    162/2    0.001    0.000    0.286    0.143 <frozen importlib._bootstrap>:936(_find_and_load_unlocked)
+    163/3    0.002    0.000    0.286    0.095 <frozen importlib._bootstrap>:966(_find_and_load)
+        3    0.000    0.000    0.286    0.095 <frozen importlib._bootstrap>:982(_gcd_import)
+   866/86    0.001    0.000    0.217    0.003 <frozen importlib._bootstrap>:997(_handle_fromlist)
+      222    0.000    0.000    0.003    0.000 <frozen importlib._bootstrap_external>:85(_path_is_mode_type)
+      204    0.000    0.000    0.003    0.000 <frozen importlib._bootstrap_external>:94(_path_isfile)
+       18    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:99(_path_isdir)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:106(_write_atomic)
       260    0.001    0.000    0.003    0.000 <frozen importlib._bootstrap_external>:263(cache_from_source)
-      150    0.000    0.000    0.002    0.000 <frozen importlib._bootstrap_external>:361(_get_cached)
+      150    0.001    0.000    0.002    0.000 <frozen importlib._bootstrap_external>:361(_get_cached)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:373(_calc_mode)
       130    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:393(_check_name_wrapper)
-      130    0.002    0.000    0.003    0.000 <frozen importlib._bootstrap_external>:430(_validate_bytecode_header)
-      130    0.000    0.000    0.022    0.000 <frozen importlib._bootstrap_external>:485(_compile_bytecode)
+      130    0.003    0.000    0.004    0.000 <frozen importlib._bootstrap_external>:430(_validate_bytecode_header)
+      129    0.001    0.000    0.023    0.000 <frozen importlib._bootstrap_external>:485(_compile_bytecode)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:497(_code_to_bytecode)
       150    0.001    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:524(spec_from_file_location)
       130    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:669(create_module)
-    130/2    0.000    0.000    0.133    0.066 <frozen importlib._bootstrap_external>:672(exec_module)
-      130    0.001    0.000    0.037    0.000 <frozen importlib._bootstrap_external>:743(get_code)
+    130/2    0.001    0.000    0.286    0.143 <frozen importlib._bootstrap_external>:672(exec_module)
+        1    0.000    0.000    0.006    0.006 <frozen importlib._bootstrap_external>:735(source_to_code)
+      130    0.002    0.000    0.097    0.001 <frozen importlib._bootstrap_external>:743(get_code)
       130    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:800(__init__)
       130    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:825(get_filename)
-      130    0.005    0.000    0.008    0.000 <frozen importlib._bootstrap_external>:830(get_data)
+      131    0.008    0.000    0.059    0.000 <frozen importlib._bootstrap_external>:830(get_data)
       130    0.000    0.000    0.002    0.000 <frozen importlib._bootstrap_external>:840(path_stats)
+        1    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap_external>:845(_cache_bytecode)
+        1    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap_external>:850(set_data)
        20    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:908(__init__)
-    20/18    0.000    0.000    0.018    0.001 <frozen importlib._bootstrap_external>:919(create_module)
-       20    0.000    0.000    0.003    0.000 <frozen importlib._bootstrap_external>:927(exec_module)
+    20/18    0.000    0.000    0.066    0.004 <frozen importlib._bootstrap_external>:919(create_module)
+       20    0.000    0.000    0.012    0.001 <frozen importlib._bootstrap_external>:927(exec_module)
        17    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1067(_path_hooks)
-      289    0.000    0.000    0.003    0.000 <frozen importlib._bootstrap_external>:1080(_path_importer_cache)
-      155    0.001    0.000    0.017    0.000 <frozen importlib._bootstrap_external>:1117(_get_spec)
-      155    0.000    0.000    0.017    0.000 <frozen importlib._bootstrap_external>:1149(find_spec)
+      289    0.000    0.000    0.004    0.000 <frozen importlib._bootstrap_external>:1080(_path_importer_cache)
+      155    0.001    0.000    0.030    0.000 <frozen importlib._bootstrap_external>:1117(_get_spec)
+      155    0.000    0.000    0.030    0.000 <frozen importlib._bootstrap_external>:1149(find_spec)
       136    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1202(<genexpr>)
        17    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1196(__init__)
-      150    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1228(_get_spec)
-      238    0.003    0.000    0.013    0.000 <frozen importlib._bootstrap_external>:1233(find_spec)
+      150    0.000    0.000    0.002    0.000 <frozen importlib._bootstrap_external>:1228(_get_spec)
+      238    0.003    0.000    0.024    0.000 <frozen importlib._bootstrap_external>:1233(find_spec)
        17    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1310(<setcomp>)
-       17    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1281(_fill_cache)
-       17    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1322(path_hook_for_FileFinder)
+       17    0.000    0.000    0.008    0.000 <frozen importlib._bootstrap_external>:1281(_fill_cache)
+       17    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1322(path_hook_for_FileFinder)
        21    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/_weakrefset.py:16(__init__)
        54    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/abc.py:9(abstractmethod)
        12    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/abc.py:135(<setcomp>)
@@ -223,9 +238,9 @@
       103    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/re.py:169(match)
         4    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/re.py:184(sub)
         4    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/re.py:204(split)
-       24    0.000    0.000    0.008    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/re.py:231(compile)
+       24    0.000    0.000    0.009    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/re.py:231(compile)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/re.py:249(escape)
-      135    0.000    0.000    0.009    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/re.py:286(_compile)
+      135    0.000    0.000    0.010    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/re.py:286(_compile)
        13    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_compile.py:376(_mk_bitmap)
        37    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:20(_is_descriptor)
        43    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:28(_is_dunder)
@@ -239,7 +254,7 @@
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:160(<setcomp>)
         9    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:181(<genexpr>)
         3    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:124(__new__)
-      699    0.000    0.000    0.002    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:267(__call__)
+      699    0.000    0.000    0.003    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:267(__call__)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:312(__getattr__)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:337(__members__)
        58    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:353(__setattr__)
@@ -247,19 +262,19 @@
         9    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:419(_get_mixins_)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:464(_find_new_)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/copyreg.py:22(constructor)
-      696    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:517(__new__)
+      696    0.001    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:517(__new__)
        70    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:594(name)
         4    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:599(value)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:625(<listcomp>)
        37    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:630(<lambda>)
-        3    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:604(_convert)
+        3    0.000    0.000    0.002    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:604(_convert)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/copyreg.py:12(pickle)
        84    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_compile.py:102(fixup)
     89/20    0.001    0.000    0.003    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_compile.py:64(_compile)
         4    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:760(_missing_)
         4    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:767(_create_pseudo_member_)
        32    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:797(__or__)
-      316    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:803(__and__)
+      316    0.001    0.000    0.002    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:803(__and__)
        34    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_compile.py:223(_compile_charset)
        19    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:822(_high_bit)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/enum.py:850(<listcomp>)
@@ -271,7 +286,7 @@
        41    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_compile.py:388(_simple)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_compile.py:393(_generate_overlap_table)
     13/10    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_compile.py:414(_get_literal_prefix)
-       20    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_compile.py:482(_compile_info)
+       20    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_compile.py:482(_compile_info)
         8    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_compile.py:441(_get_charset_prefix)
        74    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/types.py:135(__get__)
        40    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_compile.py:539(isstring)
@@ -280,17 +295,23 @@
        20    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:76(__init__)
        37    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/functools.py:44(update_wrapper)
        35    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/functools.py:74(wraps)
-       14    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:96(closegroup)
+       14    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:96(closegroup)
        89    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:111(__init__)
        14    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:84(opengroup)
        68    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:81(groups)
+   337040    4.543    0.000   23.849    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:213(aveDist)
+    55408    0.080    0.000    0.327    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:170(checkJumpOver)
+   191259    1.140    0.000   30.334    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:186(heuristic)
+   487675    0.454    0.000    1.241    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:154(addrmPiece)
+   237275    0.257    0.000    1.465    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:145(move)
+   238388    0.332    0.000    0.396    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:137(undo)
       139    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:159(__len__)
         4    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:161(__delitem__)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/functools.py:479(decorating_function)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/functools.py:448(lru_cache)
        41    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:167(__setitem__)
       205    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:171(append)
-   144/75    0.001    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:173(getwidth)
+   144/75    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:173(getwidth)
       335    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:163(__getitem__)
        20    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:223(__init__)
       129    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:285(tell)
@@ -308,55 +329,55 @@
     40/20    0.000    0.000    0.004    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:407(_parse_sub)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/weakref.py:288(update)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/weakref.py:354(__init__)
-    45/21    0.001    0.000    0.003    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:470(_parse)
+    45/21    0.002    0.000    0.004    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:470(_parse)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:784(_parse_flags)
        20    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:828(fix_flags)
-       20    0.000    0.000    0.004    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:844(parse)
-        3    0.000    0.000    0.133    0.044 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/importlib/__init__.py:108(import_module)
-        4    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/warnings.py:119(filterwarnings)
+       20    0.000    0.000    0.005    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/sre_parse.py:844(parse)
+        3    0.000    0.000    0.286    0.095 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/importlib/__init__.py:108(import_module)
+        4    0.000    0.000    0.002    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/warnings.py:119(filterwarnings)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/warnings.py:143(simplefilter)
         5    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/warnings.py:159(_add_filter)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/warnings.py:428(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/warnings.py:449(__enter__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/warnings.py:468(__exit__)
-        1    0.000    0.000   16.185   16.185 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/__main__.py:19(main)
+        1    0.000    0.000   99.587   99.587 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/__main__.py:19(main)
         8    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/contextlib.py:129(contextmanager)
-        1    0.002    0.002   16.050   16.050 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/__main__.py:56(play)
-       89    0.001    0.000    0.011    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/__main__.py:105(display)
-       91    0.000    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/__main__.py:110(info)
-      181    0.000    0.000    0.002    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/__main__.py:113(say)
-        3    0.000    0.000    0.133    0.044 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:20(__init__)
+        1    0.002    0.002   99.299   99.299 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/__main__.py:56(play)
+       92    0.001    0.000    0.011    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/__main__.py:105(display)
+       94    0.000    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/__main__.py:110(info)
+      187    0.000    0.000    0.002    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/__main__.py:113(say)
+        3    0.000    0.000    0.287    0.096 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:20(__init__)
         1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:108(<dictcomp>)
         1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:107(<setcomp>)
         1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:104(__init__)
-       88    0.001    0.000    0.008    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:127(update)
-       88    0.004    0.000    0.004    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:168(_available_actions)
-       88    0.001    0.000    0.002    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:189(_turn_detect_draw)
-     1030    0.001    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:209(<genexpr>)
-       89    0.001    0.000    0.002    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:202(_snap)
-       90    0.000    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:214(over)
+       91    0.001    0.000    0.007    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:127(update)
+       91    0.004    0.000    0.004    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:168(_available_actions)
+       91    0.001    0.000    0.002    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:189(_turn_detect_draw)
+     1149    0.001    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:209(<genexpr>)
+       92    0.001    0.000    0.002    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:202(_snap)
+       93    0.000    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:214(over)
         1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:217(end)
-       89    0.002    0.000    0.002    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:247(<listcomp>)
-       89    0.003    0.000    0.006    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:239(display)
-       89    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:253(_log)
-       88    0.001    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:257(_log_action)
+       92    0.002    0.000    0.002    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:247(<listcomp>)
+       92    0.003    0.000    0.007    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:239(display)
+       92    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:253(_log)
+       91    0.000    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:257(_log_action)
         1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/game.py:266(_end_log)
-       88    0.002    0.000   14.714    0.167 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:43(action)
-      264    0.006    0.000    1.299    0.005 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:54(update)
-        3    0.000    0.000    0.014    0.005 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:34(init)
-     1156    0.001    0.000    0.018    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:63(_message)
+       91    0.002    0.000   97.850    1.075 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:43(action)
+      273    0.007    0.000    1.411    0.005 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:54(update)
+        3    0.000    0.000    0.015    0.005 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:34(init)
+     1195    0.001    0.000    0.019    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:63(_message)
         1    0.000    0.000    0.002    0.002 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/options.py:110(get_options)
-        3    0.000    0.000    0.133    0.044 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:67(_load_player_class)
+        3    0.000    0.000    0.286    0.095 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:67(_load_player_class)
         3    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/options.py:183(__call__)
         3    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:90(__init__)
-      355    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:99(_set_status)
-      355    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:101(status)
-      355    0.003    0.000    1.729    0.005 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:104(__enter__)
-      355    0.005    0.000    0.006    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:111(__exit__)
+      367    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:99(_set_status)
+      367    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:101(status)
+      367    0.003    0.000    1.849    0.005 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:104(__enter__)
+      367    0.006    0.000    0.007    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:111(__exit__)
         3    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:133(__init__)
-      355    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:138(status)
-      355    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:141(__enter__)
-      355    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:143(__exit__)
+      367    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:138(status)
+      367    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:141(__enter__)
+      367    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:143(__exit__)
         1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:165(_get_space_usage)
         1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/referee/player.py:182(set_space_line)
        11    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:793(__init__)
@@ -366,7 +387,7 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1011(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1030(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1211(__init__)
-        5    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1226(__init__)
+        5    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1226(__init__)
        56    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1278(register)
        25    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1282(_registry_get)
        11    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1307(add_argument)
@@ -383,11 +404,11 @@
         1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1604(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1726(<listcomp>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1725(_get_positional_actions)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1733(parse_args)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1740(parse_known_args)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1733(parse_args)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1740(parse_known_args)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1822(take_action)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1920(consume_positionals)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1775(_parse_known_args)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1920(consume_positionals)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:1775(_parse_known_args)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:2077(<listcomp>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:2081(<listcomp>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:2071(_match_arguments_partial)
@@ -396,6 +417,15 @@
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:2234(_get_values)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:2286(_get_value)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/argparse.py:2312(_check_value)
+15739614/715437   18.951    0.000   44.561    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/copy.py:132(deepcopy)
+ 10731555    1.195    0.000    1.195    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/copy.py:190(_deepcopy_atomic)
+   715437    1.748    0.000   21.936    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/copy.py:210(_deepcopy_list)
+  2861748    1.943    0.000   10.283    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/copy.py:220(<listcomp>)
+  2861748    4.627    0.000   15.231    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/copy.py:219(_deepcopy_tuple)
+   715437    2.421    0.000   42.409    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/copy.py:236(_deepcopy_dict)
+  2146311    1.537    0.000    2.036    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/copy.py:252(_keep_alive)
+  1430874    0.508    0.000   24.808    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/copy.py:273(<genexpr>)
+   715437    1.691    0.000   26.571    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/copy.py:268(_reconstruct)
         4    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/textwrap.py:414(dedent)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/gettext.py:205(_expand_lang)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/gettext.py:466(find)
@@ -403,48 +433,54 @@
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/gettext.py:572(dgettext)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/gettext.py:611(gettext)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/locale.py:379(normalize)
-        1    0.000    0.000    0.000    0.000 <string>:5(TokenInfo)
+        1    0.000    0.000    0.007    0.007 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/financial.py:12(<module>)
+        1    0.000    0.000    0.006    0.006 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/decimal.py:2(<module>)
+        1    0.000    0.000    0.000    0.000 <string>:5(DecimalTuple)
         1    0.000    0.000    0.000    0.000 <string>:1(<module>)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/lzma.py:38(LZMAFile)
-        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/lzma.py:9(<module>)
-        1    0.000    0.000    0.000    0.000 <string>:5(usage)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:170(LineSplitter)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:270(NameValidator)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:464(ConverterError)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:472(ConverterLockError)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:480(ConversionWarning)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:493(StringConverter)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:3(<module>)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/arrayterator.py:20(Arrayterator)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/arrayterator.py:9(<module>)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/arraypad.py:5(<module>)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_version.py:18(NumpyVersion)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_version.py:7(<module>)
+        1    0.000    0.000    0.005    0.005 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/fft/__init__.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/fft/info.py:184(<module>)
+        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/fft/fftpack.py:32(<module>)
+        2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/fft/helper.py:253(__init__)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/fft/helper.py:232(_FFTCache)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/fft/helper.py:4(<module>)
+        1    0.000    0.000    0.013    0.013 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/__init__.py:15(<module>)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polynomial.py:1614(Polynomial)
+        1    0.000    0.000    0.004    0.004 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polynomial.py:57(<module>)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polyutils.py:58(RankWarning)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polyutils.py:62(PolyError)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polyutils.py:66(PolyDomainError)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polyutils.py:79(PolyBase)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polyutils.py:45(<module>)
        18    0.000    0.000    0.000    0.000 {built-in method _struct.calcsize}
         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
-        1    0.000    0.000    0.132    0.132 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/__init__.py:1(<module>)
-        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:11(__init__)
-  1967651    2.126    0.000    2.126    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:34(coorToBitboard)
-  1449128    0.301    0.000    0.301    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:46(getPlayer)
-    85602    0.341    0.000    0.341    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:57(<listcomp>)
-    85602    0.248    0.000    0.248    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:58(<listcomp>)
-    85602    0.845    0.000    1.521    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:56(getPositions)
-    28524    0.345    0.000   11.826    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:105(getAllMoves)
-   291459    3.347    0.000    3.347    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:124(<setcomp>)
-    85602    2.985    0.000   11.382    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:114(availableMoves)
-    28524    0.017    0.000    0.017    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:141(winner)
-   137325    0.114    0.000    0.140    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:152(undo)
-   136784    0.109    0.000    0.568    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:160(move)
-   280711    0.167    0.000    0.474    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:169(addrmPiece)
-    21262    0.023    0.000    0.083    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:224(checkJumpOver)
-   137413    0.634    0.000    1.397    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:185(updateState)
-        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:248(__init__)
-        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:8(GameState)
-       30    0.002    0.000   14.253    0.475 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:266(action)
-137325/610    0.422    0.000   14.235    0.023 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:293(minimax)
-       88    0.000    0.000    0.003    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:356(update)
-        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:247(Player)
-        1    0.000    0.000    0.131    0.131 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:1(<module>)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/__init__.py:195(_sanity_check)
-  1686940    1.529    0.000    3.348    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:89(findTile)
-   108801    0.236    0.000    0.359    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:70(evaluate)
-        1    0.000    0.000    0.131    0.131 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/__init__.py:106(<module>)
+        1    0.000    0.000    0.283    0.283 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/__init__.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:8(<listcomp>)
+        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:10(<listcomp>)
+        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:14(__init__)
+  3568493    4.247    0.000    4.247    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:38(coorToBitboard)
+  5049756    1.029    0.000    1.029    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:50(getPlayer)
+  1389275   13.447    0.000   15.056    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:61(getPositions)
+  3080818    2.746    0.000    6.205    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:80(findTile)
+  4657081    3.809    0.000    3.809    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:131(isValidMove)
+  8749672    8.153    0.000   10.302    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:228(hex_distance)
+   238479    1.232    0.000   47.711    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:234(updateState)
+        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:11(GameState)
+        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:276(__init__)
+       31    0.005    0.000   97.360    3.141 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:294(action)
+       91    0.000    0.000    0.028    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:376(update)
+238388/1060    0.964    0.000   97.121    0.092 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:322(minimax)
+        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:275(Player)
+        1    0.000    0.000    0.276    0.276 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:1(<module>)
+        1    0.001    0.001    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/__init__.py:195(_sanity_check)
+        1    0.000    0.000    0.274    0.274 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/__init__.py:106(<module>)
         9    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/__future__.py:79(__init__)
+   141418    5.611    0.000   17.139    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:106(availableMoves)
+    47129    0.467    0.000   17.764    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/SquareBox_Minimax/player.py:97(getAllMoves)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/__future__.py:78(_Feature)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/__future__.py:48(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/_globals.py:32(ModuleDeprecationWarning)
@@ -456,16 +492,16 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/__config__.py:3(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/version.py:5(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/_distributor_init.py:10(<module>)
-        1    0.000    0.000    0.046    0.046 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/__init__.py:1(<module>)
+        1    0.000    0.000    0.088    0.088 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/__init__.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/info.py:83(<module>)
-        1    0.000    0.000    0.016    0.016 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/multiarray.py:7(<module>)
+        1    0.000    0.000    0.045    0.045 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/multiarray.py:7(<module>)
        77    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/overrides.py:104(decorator)
        77    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/overrides.py:93(set_module)
       317    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/overrides.py:146(decorator)
       317    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/overrides.py:111(array_function_dispatch)
        23    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/overrides.py:183(decorator)
        23    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/overrides.py:179(array_function_from_dispatcher)
-        1    0.000    0.000    0.016    0.016 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/overrides.py:1(<module>)
+        1    0.000    0.000    0.044    0.044 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/overrides.py:1(<module>)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:41(_days_before_year)
         5    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:46(_days_in_month)
        35    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:262(_check_int_field)
@@ -481,39 +517,9 @@
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:1059(__new__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:1034(time)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:1389(__new__)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:1381(datetime)
-        3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:2014(_create)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:1991(timezone)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:5(<module>)
-        1    0.000    0.000    0.007    0.007 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/__init__.py:10(<module>)
-       44    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:15(ismethod)
-       44    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:28(isfunction)
-       39    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:43(iscode)
-       39    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:67(getargs)
-       44    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:98(getargspec)
-      101    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:133(strseq)
-        7    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:144(<lambda>)
-        5    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:145(<lambda>)
-       62    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:146(<lambda>)
-       39    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:142(formatargspec)
-       60    0.000    0.000    0.000    0.000 {method 'copy' of 'numpy.ndarray' objects}
-        1    0.000    0.000    0.000    0.000 {method 'dot' of 'numpy.ndarray' objects}
-        2    0.000    0.000    0.000    0.000 {method 'view' of 'numpy.ndarray' objects}
-        2    0.000    0.000    0.000    0.000 {built-in method numpy.core._multiarray_umath.set_string_function}
-        1    0.000    0.000    0.000    0.000 {built-in method numpy.core._multiarray_umath.set_typeDict}
-      106    0.000    0.000    0.000    0.000 {built-in method numpy.array}
-        1    0.000    0.000    0.000    0.000 {built-in method numpy.copyto}
-        1    0.000    0.000    0.000    0.000 {built-in method numpy.empty}
-      298    0.000    0.000    0.000    0.000 {built-in method numpy.core._multiarray_umath.add_docstring}
-        7    0.000    0.000    0.000    0.000 {built-in method numpy.seterrobj}
-       14    0.000    0.000    0.000    0.000 {built-in method numpy.geterrobj}
-        1    0.000    0.000    0.000    0.000 {method 'view' of 'numpy.generic' objects}
-        1    0.000    0.000    0.000    0.000 {built-in method math.exp}
-        2    0.000    0.000    0.000    0.000 {built-in method math.log}
-        1    0.000    0.000    0.000    0.000 {built-in method math.sqrt}
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:7(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/py3k.py:104(contextlib_nullcontext)
-        1    0.000    0.000    0.006    0.006 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/py3k.py:4(<module>)
+        1    0.000    0.000    0.008    0.008 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/py3k.py:4(<module>)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pathlib.py:48(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pathlib.py:44(_Flavour)
        27    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pathlib.py:119(<genexpr>)
@@ -538,7 +544,7 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pathlib.py:984(Path)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pathlib.py:1446(PosixPath)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pathlib.py:1453(WindowsPath)
-        1    0.000    0.000    0.005    0.005 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pathlib.py:1(<module>)
+        1    0.000    0.000    0.007    0.007 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pathlib.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/fnmatch.py:11(<module>)
         1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ntpath.py:6(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/__init__.py:1(<module>)
@@ -554,6 +560,36 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/parse.py:337(SplitResultBytes)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/parse.py:342(ParseResultBytes)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/parse.py:348(_fix_result_transcoding)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:1381(datetime)
+        3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:2014(_create)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:1991(timezone)
+        1    0.000    0.000    0.004    0.004 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py:5(<module>)
+        1    0.000    0.000    0.010    0.010 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/__init__.py:10(<module>)
+       44    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:15(ismethod)
+       44    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:28(isfunction)
+       39    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:43(iscode)
+       39    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:67(getargs)
+       44    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:98(getargspec)
+      101    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:133(strseq)
+        7    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:144(<lambda>)
+        5    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:145(<lambda>)
+       62    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:146(<lambda>)
+       39    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/compat/_inspect.py:142(formatargspec)
+       60    0.001    0.000    0.001    0.000 {method 'copy' of 'numpy.ndarray' objects}
+        1    0.002    0.002    0.002    0.002 {method 'dot' of 'numpy.ndarray' objects}
+        2    0.000    0.000    0.000    0.000 {method 'view' of 'numpy.ndarray' objects}
+        2    0.000    0.000    0.000    0.000 {built-in method numpy.core._multiarray_umath.set_string_function}
+        1    0.000    0.000    0.000    0.000 {built-in method numpy.core._multiarray_umath.set_typeDict}
+      106    0.002    0.000    0.002    0.000 {built-in method numpy.array}
+        1    0.000    0.000    0.000    0.000 {built-in method numpy.copyto}
+        1    0.000    0.000    0.000    0.000 {built-in method numpy.empty}
+      298    0.000    0.000    0.000    0.000 {built-in method numpy.core._multiarray_umath.add_docstring}
+        7    0.000    0.000    0.000    0.000 {built-in method numpy.seterrobj}
+       14    0.000    0.000    0.000    0.000 {built-in method numpy.geterrobj}
+        1    0.000    0.000    0.000    0.000 {method 'view' of 'numpy.generic' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method math.exp}
+        2    0.000    0.000    0.000    0.000 {built-in method math.log}
+        1    0.000    0.000    0.000    0.000 {built-in method math.sqrt}
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/parse.py:741(Quoter)
         1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/parse.py:28(<module>)
         1    0.000    0.000    0.000    0.000 <string>:5(DefragResult)
@@ -564,13 +600,13 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/numerictypes.py:429(_typedict)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/numerictypes.py:445(_construct_lookups)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/numerictypes.py:593(_register_types)
-        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/numerictypes.py:81(<module>)
+        1    0.000    0.000    0.005    0.005 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/numerictypes.py:81(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/numbers.py:12(Number)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/numbers.py:32(Complex)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/numbers.py:147(Real)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/numbers.py:267(Rational)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/numbers.py:294(Integral)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/numbers.py:6(<module>)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/numbers.py:6(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_string_helpers.py:9(<listcomp>)
        36    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_string_helpers.py:16(english_lower)
        16    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_string_helpers.py:44(english_upper)
@@ -580,15 +616,15 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:63(<setcomp>)
        32    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:68(<genexpr>)
        16    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:66(_bits_of)
-       16    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:79(bitname)
+       16    0.001    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:79(bitname)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:95(_add_types)
         6    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:113(<genexpr>)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:115(_add_aliases)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:115(_add_aliases)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:154(_add_integer_aliases)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:187(_set_up_aliases)
        30    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:238(_add_array_type)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:246(_set_array_types)
-        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:24(<module>)
+        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_type_aliases.py:24(<module>)
        16    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_dtype.py:36(_kind_name)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_dtype.py:5(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/numeric.py:96(ComplexWarning)
@@ -603,7 +639,7 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/numeric.py:2995(errstate)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/numeric.py:3069(_setdef)
         4    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/numeric.py:3083(extend_all)
-        1    0.000    0.000    0.013    0.013 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/numeric.py:1(<module>)
+        1    0.000    0.000    0.017    0.017 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/numeric.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_internal.py:204(dummy_ctype)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_internal.py:216(_getintp_ctype)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_internal.py:243(c_void_p)
@@ -617,7 +653,7 @@
        51    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_internal.py:840(_ufunc_doc_signature_formatter)
        13    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_internal.py:886(npy_ctypes_check)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_internal.py:899(recursive)
-        1    0.000    0.000    0.004    0.004 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_internal.py:6(<module>)
+        1    0.000    0.000    0.006    0.006 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_internal.py:6(<module>)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ctypes/__init__.py:99(CFunctionType)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ctypes/__init__.py:73(CFUNCTYPE)
        14    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ctypes/__init__.py:139(_check_size)
@@ -648,7 +684,7 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ctypes/__init__.py:411(LibraryLoader)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ctypes/__init__.py:477(CFunctionType)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ctypes/__init__.py:476(PYFUNCTYPE)
-        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ctypes/__init__.py:1(<module>)
+        1    0.000    0.000    0.004    0.004 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ctypes/__init__.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ctypes/_endian.py:23(_swapped_meta)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ctypes/_endian.py:46(BigEndianStructure)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ctypes/_endian.py:1(<module>)
@@ -658,19 +694,19 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pickle.py:88(_Stop)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pickle.py:181(<listcomp>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pickle.py:184(_Framer)
-        2    0.000    0.000    0.000    0.000 {built-in method _ctypes.POINTER}
-        1    0.000    0.000    0.000    0.000 {built-in method _ctypes.dlopen}
-       38    0.000    0.000    0.000    0.000 {built-in method _ctypes.sizeof}
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pickle.py:220(_Unframer)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pickle.py:345(_Pickler)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pickle.py:986(_Unpickler)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pickle.py:24(<module>)
+        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pickle.py:24(<module>)
        43    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/_compat_pickle.py:165(<genexpr>)
        85    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/_compat_pickle.py:167(<genexpr>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/_compat_pickle.py:9(<module>)
+        2    0.000    0.000    0.000    0.000 {built-in method _ctypes.POINTER}
+        1    0.000    0.000    0.000    0.000 {built-in method _ctypes.dlopen}
+       38    0.000    0.000    0.000    0.000 {built-in method _ctypes.sizeof}
         1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/fromnumeric.py:3(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_methods.py:5(<module>)
-       15    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/arrayprint.py:463(wrapper)
+       15    0.001    0.000    0.002    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/arrayprint.py:463(wrapper)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/arrayprint.py:460(decorating_function)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/arrayprint.py:450(_recursive_guard)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/arrayprint.py:832(FloatingFormat)
@@ -687,7 +723,7 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/arrayprint.py:1265(SubArrayFormat)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/arrayprint.py:1275(StructuredVoidFormat)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/arrayprint.py:1312(StructureFormat)
-       15    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/arrayprint.py:1499(_array_str_implementation)
+       15    0.000    0.000    0.002    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/arrayprint.py:1499(_array_str_implementation)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/arrayprint.py:1571(set_string_function)
         1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/arrayprint.py:5(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/defchararray.py:1824(chararray)
@@ -698,19 +734,19 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/records.py:36(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/memmap.py:24(memmap)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/memmap.py:1(<module>)
-      277    0.000    0.000    0.003    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/function_base.py:431(add_newdoc)
+      277    0.001    0.000    0.005    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/function_base.py:431(add_newdoc)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/function_base.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/machar.py:18(MachAr)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/machar.py:7(<module>)
        30    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:19(_fr0)
-       30    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:27(_fr1)
-       36    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:41(<lambda>)
-       30    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:42(<lambda>)
-       30    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:43(<lambda>)
-        6    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:37(__init__)
+       30    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:27(_fr1)
+       36    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:41(<lambda>)
+       30    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:42(<lambda>)
+       30    0.000    0.000    0.002    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:43(<lambda>)
+        6    0.002    0.000    0.005    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:37(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:34(MachArLike)
         8    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:92(_register_type)
-        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:96(_register_known_types)
+        1    0.001    0.001    0.006    0.006 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:96(_register_known_types)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:293(finfo)
         5    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:497(__init__)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/getlimits.py:522(max)
@@ -723,16 +759,16 @@
        27    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_add_newdocs.py:6824(<genexpr>)
        36    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_add_newdocs.py:6825(<genexpr>)
        19    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_add_newdocs.py:6819(add_newdoc_for_scalar_type)
-        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_add_newdocs.py:10(<module>)
+        1    0.000    0.000    0.006    0.006 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_add_newdocs.py:10(<module>)
        13    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_dtype_ctypes.py:69(_from_ctypes_scalar)
        13    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_dtype_ctypes.py:97(dtype_from_ctypes_type)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_dtype_ctypes.py:24(<module>)
        10    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/_pytesttester.py:72(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/_pytesttester.py:47(PytestTester)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/_pytesttester.py:29(<module>)
-        1    0.000    0.000    0.037    0.037 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/__init__.py:1(<module>)
+        1    0.000    0.000    0.065    0.065 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/__init__.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/info.py:156(<module>)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/type_check.py:3(<module>)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/type_check.py:3(<module>)
         4    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/ufunclike.py:16(_deprecate_out_named_y)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/ufunclike.py:5(<module>)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/index_tricks.py:144(__init__)
@@ -751,21 +787,21 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/index_tricks.py:603(ndindex)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/index_tricks.py:726(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/index_tricks.py:682(IndexExpression)
-        1    0.000    0.000    0.011    0.011 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/index_tricks.py:1(<module>)
-        1    0.000    0.000    0.007    0.007 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/matrixlib/__init__.py:3(<module>)
+        1    0.000    0.000    0.016    0.016 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/index_tricks.py:1(<module>)
+        1    0.000    0.000    0.010    0.010 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/matrixlib/__init__.py:3(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/matrixlib/defmatrix.py:74(matrix)
-        1    0.000    0.000    0.006    0.006 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/matrixlib/defmatrix.py:1(<module>)
+        1    0.000    0.000    0.009    0.009 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/matrixlib/defmatrix.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ast.py:229(NodeVisitor)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ast.py:266(NodeTransformer)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ast.py:26(<module>)
-        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/linalg/__init__.py:45(<module>)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ast.py:26(<module>)
+        1    0.000    0.000    0.007    0.007 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/linalg/__init__.py:45(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/linalg/info.py:34(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/linalg/linalg.py:52(LinAlgError)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/linalg/linalg.py:82(_determine_error_states)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/linalg/linalg.py:10(<module>)
+        1    0.000    0.000    0.005    0.005 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/linalg/linalg.py:10(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/twodim_base.py:3(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/function_base.py:1878(vectorize)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/function_base.py:1(<module>)
+        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/function_base.py:1(<module>)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/utils.py:53(_set_function_name)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/utils.py:70(__init__)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/utils.py:75(__call__)
@@ -785,29 +821,29 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/mixins.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/nanfunctions.py:22(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/shape_base.py:1(<module>)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/scimath.py:17(<module>)
+        1    0.003    0.003    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/scimath.py:17(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/polynomial.py:30(RankWarning)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/polynomial.py:1005(poly1d)
-        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/polynomial.py:4(<module>)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/polynomial.py:4(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/arraysetops.py:27(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/npyio.py:58(BagObj)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/npyio.py:122(NpzFile)
-        1    0.000    0.000    0.012    0.012 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/npyio.py:1(<module>)
+        1    0.000    0.000    0.022    0.022 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/npyio.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/format.py:156(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_datasource.py:166(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_datasource.py:142(_FileOpeners)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_datasource.py:269(DataSource)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_datasource.py:627(Repository)
-        1    0.000    0.000    0.010    0.010 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_datasource.py:35(<module>)
+        1    0.000    0.000    0.019    0.019 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_datasource.py:35(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/shutil.py:55(Error)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/shutil.py:58(SameFileError)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/shutil.py:61(SpecialFileError)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/shutil.py:65(ExecError)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/shutil.py:68(ReadError)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/shutil.py:71(RegistryError)
-        1    0.000    0.000    0.010    0.010 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/shutil.py:5(<module>)
+        1    0.000    0.000    0.018    0.018 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/shutil.py:5(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/bz2.py:32(BZ2File)
-        1    0.000    0.000    0.007    0.007 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/bz2.py:5(<module>)
+        1    0.000    0.000    0.012    0.012 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/bz2.py:5(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/_compression.py:9(BaseStream)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/_compression.py:33(DecompressReader)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/_compression.py:1(<module>)
@@ -835,12 +871,12 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/threading.py:1190(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/threading.py:1188(_MainThread)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/threading.py:1207(_DummyThread)
-        1    0.000    0.000    0.005    0.005 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/threading.py:1(<module>)
+        1    0.000    0.000    0.008    0.008 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/threading.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/traceback.py:227(FrameSummary)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/traceback.py:316(StackSummary)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/traceback.py:438(TracebackException)
-        1    0.001    0.001    0.004    0.004 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/traceback.py:1(<module>)
-        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/linecache.py:6(<module>)
+        1    0.000    0.000    0.007    0.007 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/traceback.py:1(<module>)
+        1    0.000    0.000    0.006    0.006 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/linecache.py:6(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tokenize.py:99(TokenInfo)
        20    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tokenize.py:112(group)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tokenize.py:113(any)
@@ -850,31 +886,20 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tokenize.py:217(TokenError)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tokenize.py:219(StopTokenizing)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tokenize.py:222(Untokenizer)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tokenize.py:21(<module>)
+        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tokenize.py:21(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/token.py:74(<dictcomp>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/token.py:1(<module>)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/financial.py:12(<module>)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/decimal.py:2(<module>)
-        1    0.000    0.000    0.000    0.000 <string>:5(DecimalTuple)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/arrayterator.py:20(Arrayterator)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/arrayterator.py:9(<module>)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/arraypad.py:5(<module>)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_version.py:18(NumpyVersion)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_version.py:7(<module>)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/fft/__init__.py:1(<module>)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/fft/info.py:184(<module>)
-        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/fft/fftpack.py:32(<module>)
-        2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/fft/helper.py:253(__init__)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/fft/helper.py:232(_FFTCache)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/fft/helper.py:4(<module>)
-        1    0.000    0.000    0.004    0.004 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/__init__.py:15(<module>)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polynomial.py:1614(Polynomial)
-        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polynomial.py:57(<module>)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polyutils.py:58(RankWarning)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polyutils.py:62(PolyError)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polyutils.py:66(PolyDomainError)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polyutils.py:79(PolyBase)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/polyutils.py:45(<module>)
+        1    0.000    0.000    0.000    0.000 <string>:5(TokenInfo)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/lzma.py:38(LZMAFile)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/lzma.py:9(<module>)
+        1    0.000    0.000    0.000    0.000 <string>:5(usage)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:170(LineSplitter)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:270(NameValidator)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:464(ConverterError)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:472(ConverterLockError)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:480(ConversionWarning)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:493(StringConverter)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/_iotools.py:3(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/_polybase.py:19(ABCPolyBase)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/_polybase.py:8(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/chebyshev.py:2118(Chebyshev)
@@ -887,13 +912,13 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/hermite_e.py:60(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/laguerre.py:1769(Laguerre)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/polynomial/laguerre.py:60(<module>)
-        1    0.000    0.000    0.004    0.004 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/random/__init__.py:86(<module>)
+        1    0.000    0.000    0.017    0.017 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/random/__init__.py:86(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ctypeslib.py:179(_ndptr)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ctypeslib.py:200(_concrete_ndptr)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ctypeslib.py:370(<dictcomp>)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ctypeslib.py:359(_get_scalar_type_map)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ctypeslib.py:51(<module>)
-        1    0.000    0.000    0.006    0.006 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/__init__.py:41(<module>)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ctypeslib.py:359(_get_scalar_type_map)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ctypeslib.py:51(<module>)
+        1    0.000    0.000    0.010    0.010 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/__init__.py:41(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:92(MaskedArrayFutureWarning)
         4    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:123(doc_note)
        44    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:146(get_object_signature)
@@ -911,7 +936,7 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:859(_DomainGreater)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:881(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:875(_DomainGreaterEqual)
-       53    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:892(__init__)
+       53    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:892(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:891(_MaskedUFunc)
        27    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:919(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:901(_MaskedUnaryOperation)
@@ -936,19 +961,19 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:2710(MaskedArray)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6059(mvoid)
         4    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6259(__has_singleton)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6265(__new__)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6265(__new__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6283(__array_finalize__)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6347(__setattr__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6255(MaskedConstant)
         2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6448(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6439(_extrema_operation)
        26    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6567(__init__)
-       26    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6572(getdoc)
+       26    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6572(getdoc)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:6556(_frommethod)
         8    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:8007(__init__)
         8    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:8012(getdoc)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:7994(_convert2ma)
-        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:21(<module>)
+        1    0.001    0.001    0.005    0.005 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/core.py:21(<module>)
        10    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/extras.py:238(__init__)
        10    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/extras.py:242(getdoc)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/extras.py:218(_fromnxfunction)
@@ -959,12 +984,12 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/extras.py:1443(MAxisConcatenator)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/extras.py:1489(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/extras.py:1473(mr_class)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/extras.py:10(<module>)
-        1    0.000    0.000    0.025    0.025 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/testing/__init__.py:7(<module>)
-        1    0.000    0.000    0.015    0.015 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/__init__.py:45(<module>)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/ma/extras.py:10(<module>)
+        1    0.000    0.000    0.048    0.048 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/testing/__init__.py:7(<module>)
+        1    0.000    0.000    0.023    0.023 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/__init__.py:45(<module>)
         3    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/result.py:12(failfast)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/result.py:24(TestResult)
-        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/result.py:1(<module>)
+        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/result.py:1(<module>)
         1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/util.py:1(<module>)
         1    0.000    0.000    0.000    0.000 <string>:5(Mismatch)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py:25(SkipTest)
@@ -983,11 +1008,21 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py:341(TestCase)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py:1338(FunctionTestCase)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py:1396(_SubTest)
-        1    0.000    0.000    0.009    0.009 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py:1(<module>)
+        1    0.000    0.000    0.011    0.011 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/difflib.py:43(SequenceMatcher)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/difflib.py:751(Differ)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/difflib.py:1707(HtmlDiff)
         1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/difflib.py:27(<module>)
+        1    0.000    0.000    0.000    0.000 <string>:5(Match)
+        2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:190(_checkLevel)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:219(_acquireLock)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:228(_releaseLock)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:239(LogRecord)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:384(__init__)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:378(PercentStyle)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:393(StrFormatStyle)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:402(StringTemplateStyle)
+        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:471(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:426(Formatter)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:601(BufferingFormatter)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:643(Filter)
@@ -1001,16 +1036,6 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:1010(FileHandler)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:1085(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:1079(_StderrHandler)
-        1    0.000    0.000    0.000    0.000 <string>:5(Match)
-        2    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:190(_checkLevel)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:219(_acquireLock)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:228(_releaseLock)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:239(LogRecord)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:384(__init__)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:378(PercentStyle)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:393(StrFormatStyle)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:402(StringTemplateStyle)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:471(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:1103(PlaceHolder)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:1150(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:1145(Manager)
@@ -1021,11 +1046,11 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:1590(LoggerAdapter)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:1966(NullHandler)
         1    0.000    0.000    0.004    0.004 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py:24(<module>)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/string.py:65(__init__)
+        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/string.py:65(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/string.py:55(_TemplateMetaclass)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/string.py:77(Template)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/string.py:173(Formatter)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/string.py:15(<module>)
+        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/string.py:15(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pprint.py:72(_safe_key)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pprint.py:98(PrettyPrinter)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/pprint.py:35(<module>)
@@ -1040,13 +1065,13 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/loader.py:66(TestLoader)
         1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/loader.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/main.py:49(TestProgram)
-        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/main.py:1(<module>)
+        1    0.000    0.000    0.005    0.005 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/main.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/runner.py:13(_WritelnDecorator)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/runner.py:29(TextTestResult)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/runner.py:120(TextTestRunner)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/runner.py:1(<module>)
+        1    0.000    0.000    0.004    0.004 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/runner.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/signals.py:9(_InterruptHandler)
-        1    0.000    0.000    0.002    0.002 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/signals.py:1(<module>)
+        1    0.000    0.000    0.003    0.003 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/signals.py:1(<module>)
        67    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/signal.py:10(<lambda>)
        68    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/signal.py:17(<lambda>)
        69    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/signal.py:22(<lambda>)
@@ -1057,24 +1082,22 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/testing/_private/utils.py:1857(IgnoreException)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/testing/_private/utils.py:1899(clear_and_catch_warnings)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/testing/_private/utils.py:1965(suppress_warnings)
-        1    0.000    0.000    0.007    0.007 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/testing/_private/utils.py:4(<module>)
+        1    0.000    0.000    0.018    0.018 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/testing/_private/utils.py:4(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tempfile.py:136(_RandomNameSequence)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tempfile.py:418(_TemporaryFileCloser)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tempfile.py:461(_TemporaryFileWrapper)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tempfile.py:631(SpooledTemporaryFile)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tempfile.py:779(TemporaryDirectory)
-        1    0.000    0.000    0.006    0.006 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tempfile.py:24(<module>)
+        1    0.000    0.000    0.016    0.016 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tempfile.py:24(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/random.py:87(__init__)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/random.py:96(seed)
-      112    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/random.py:223(_randbelow)
-      112    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/random.py:255(choice)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/random.py:71(Random)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/random.py:668(SystemRandom)
-        1    0.000    0.000    0.006    0.006 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/random.py:38(<module>)
-        8    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/hashlib.py:73(__get_builtin_constructor)
-       14    0.000    0.000    0.001    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/hashlib.py:116(__get_openssl_constructor)
-        1    0.000    0.000    0.004    0.004 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/hashlib.py:54(<module>)
-        1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/bisect.py:1(<module>)
+        1    0.000    0.000    0.015    0.015 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/random.py:38(<module>)
+        8    0.000    0.000    0.002    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/hashlib.py:73(__get_builtin_constructor)
+       14    0.000    0.000    0.002    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/hashlib.py:116(__get_openssl_constructor)
+        1    0.000    0.000    0.011    0.011 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/hashlib.py:54(<module>)
+        1    0.000    0.000    0.001    0.001 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/bisect.py:1(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/testing/_private/decorators.py:99(skipif)
         1    0.000    0.000    0.000    0.000 {built-in method _hashlib.openssl_md5}
         1    0.000    0.000    0.000    0.000 {built-in method _hashlib.openssl_sha1}
@@ -1085,21 +1108,19 @@
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/testing/_private/decorators.py:15(<module>)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/testing/_private/nosetester.py:115(NoseTester)
         1    0.000    0.000    0.000    0.000 /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/testing/_private/nosetester.py:6(<module>)
-        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/__init__.py:1(<module>)
-        2    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:6(__init__)
-      490    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:26(getPlayer)
-      371    0.001    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:36(findTile)
-        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:4(GameState)
-        2    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:49(__init__)
-       56    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:81(<listcomp>)
-       58    0.001    0.000    0.005    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:67(action)
-      176    0.002    0.000    0.003    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:90(update)
-       60    0.000    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:134(checkJumpOver)
-       56    0.001    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:153(<setcomp>)
-       56    0.001    0.000    0.003    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:146(availableMoves)
-        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:48(Player)
-        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Auto/player.py:1(<module>)
-        1    0.000    0.000    0.000    0.000 {function Random.seed at 0x10bc16730}
-      183    0.000    0.000    0.000    0.000 {method 'getrandbits' of '_random.Random' objects}
+        1    0.000    0.000    0.001    0.001 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/__init__.py:1(<module>)
+        2    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/player.py:4(__init__)
+      284    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/player.py:23(getPlayer)
+      111    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/player.py:33(findTile)
+        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/player.py:3(GameState)
+        2    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/player.py:46(__init__)
+       45    0.001    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/player.py:120(<setcomp>)
+       60    0.001    0.000    0.003    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/player.py:67(action)
+      182    0.001    0.000    0.002    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/player.py:130(update)
+       58    0.000    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/player.py:173(checkJumpOver)
+      309    0.000    0.000    0.001    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/player.py:186(hex_distance)
+        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/player.py:45(Player)
+        1    0.000    0.000    0.000    0.000 /Users/TakoYaki/Documents/works/2019/AI/Proj2/part-B-skeleton/Greedy/player.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 {function Random.seed at 0x11000a620}
 
 
