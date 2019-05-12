@@ -8,6 +8,8 @@ import sys
 _VERTICAL = [int(283691315109952/(2 ** i)) for i in range(7)]
 # Bitboards that represent the horizontal mask
 _HORIZONTAL = [127 * (128 ** i) for i in range(7)]
+
+_LAST_MOVE = []
 class GameState:
 
     # Initialise the game state.
@@ -135,7 +137,7 @@ class GameState:
 
     # Function that undo the last move.
     def undo(self):
-        dic = self.last_move.pop()
+        dic = _LAST_MOVE.pop()
         self.red = dic['red']
         self.green = dic['green']
         self.blue = dic['blue']
@@ -193,7 +195,7 @@ class GameState:
             # Adds self ave_dist score
             if colour == colour_i:
                 if len(self.getPositions(colour)) != 0:
-                    result += self.getPlayer(colour)['score']  * 10
+                    result += self.getPlayer(colour)['score']  * 1000
                     result -= (self.weights[i] * self.aveDist(colour))
                     result += self.getPlayer(colour_i)['exit'] * 100
             else:
@@ -233,7 +235,7 @@ class GameState:
     # Function that handles all the updates that happen on the board.
     def updateState(self, colour, action):
         # Store the move.
-        self.last_move.append({
+        _LAST_MOVE.append({
             #"red":{"board":self.red['board'],"goals":self.red['goals'],"score":int(self.red['score']),"exit":int(self.red['exit'])},
             #"green":{"board":self.green['board'],"goals":self.green['goals'],"score":int(self.green['score']),"exit":int(self.green['exit'])},
             #"blue":{"board":self.blue['board'],"goals":self.blue['goals'],"score":int(self.blue['score']),"exit":int(self.blue['exit'])},
@@ -243,11 +245,13 @@ class GameState:
         })
 
         player = self.getPlayer(colour)
+        score = 0
+        score_e = 0
 
         # MOVE.
         if action[0] == "MOVE":
             player['board'] = self.move(player['board'], action[1][0],action[1][1])
-            player['score'] -= 5
+            score -= 5
         # JUMP.
         if action[0] == "JUMP":
             # Check if there's a piece in between the jumps.
@@ -258,19 +262,21 @@ class GameState:
                     # Flip the piece.
                     self.getPlayer(check[0])['board'] = self.addrmPiece(self.getPlayer(check[0])['board'],check[1])
                     player['board'] = self.addrmPiece(player['board'],check[1],True)
-                    self.getPlayer(check[0])['score'] -= 1
-                    player['score'] += 1
+                    score_e -= 1
+                    score += 1
 
                 # Update the jumped position.
-                player['score'] += 1
+                score += 1
                 player['board'] = self.move(player['board'], action[1][0],action[1][1])
+            self.getPlayer(check[0])['score'] = score_e
 
         # EXIT
         if action[0] == "EXIT":
             # Remove the piece from the board and update the player score.
             player['board'] = self.addrmPiece(player['board'],action[1])
-            player['score'] += 1
-            player['exit'] += 100
+            score += 100
+
+        player['score'] = score
 
 class Player:
     def __init__(self, colour):
