@@ -17,6 +17,8 @@ _MOVES = json.load(open('SquareBox_Minimax/moves.json','r'))
 
 _JUMPS = json.load(open('SquareBox_Minimax/jumps.json','r'))
 
+_NEAREST_GOAL = json.load(open('SquareBox_Minimax/dist.json','r'))
+
 class GameState:
 
     # Initialise the game state.
@@ -186,20 +188,31 @@ class GameState:
         colours = ["red", "green", "blue"]
 
         for colour in colours:
-            #Modify update to record : No of Opponent/our Jumps, No of Exits
             # Adds self ave_dist score
             tmp = 0
             if self.getPositions(colour):
-                result += self.scores[colour]
-                result += self.exits[colour]
+                tmp += self.scores[colour]
+                tmp += self.exits[colour]
+
                 #result -= (self.weights[i] * self.aveDist(colour))
 
             # Make it negative if it's an enemy
             if colour != colour_i:
+                #average distance heuristic
+                dist = self.aveDist(colour)
+                if dist != 0:
+                    tmp += (1/dist)
+                else:
+                    tmp += 1
                 tmp = -tmp
-            else:
-                tmp *= 2
 
+            else:
+                dist = self.aveDist(colour)
+                if dist != 0:
+                    tmp += (1/dist)
+                else:
+                    tmp += 1
+                tmp *= 2
             result += tmp
         return result
 
@@ -211,13 +224,13 @@ class GameState:
         ave_dist = 0
         #Iterate self pieces and for each piece get min dist then sum all
         for piece in self.getPositions(colour):
-            min_dist = sys.maxsize
-            for goal in self.goals[colour]:
-                dist = self.hex_distance(piece,goal)
-                if dist < min_dist:
-                    min_dist = dist
+            min_dist = _NEAREST_GOAL[colour][str(piece)]
             ave_dist += min_dist
-        ave_dist = ave_dist/len(self.getPositions(colour))
+        num_piece = len(self.getPositions(colour))
+        if num_piece != 0:
+             ave_dist = ave_dist/num_piece
+        else:
+            ave_dist = 0
         return ave_dist
 
     # Helper function that calculates the distance between two tiles.
