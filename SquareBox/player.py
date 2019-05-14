@@ -1,358 +1,435 @@
-import numpy as np
-import SquareBox.Logger as Logger
-import os
-from copy import deepcopy
-from random import choice
+import sys
+import json
+import math
 
+# Bitboards that represent the vertical mask
+_VERTICAL = [int(283691315109952/(2 ** i)) for i in range(7)]
+# Bitboards that represent the horizontal mask
+_HORIZONTAL = [127 * (128 ** i) for i in range(7)]
+
+_VERTICAL_LENGTH = len(_VERTICAL)
+
+_HORIZONTAL_LENGTH = len(_HORIZONTAL)
+
+_LAST_MOVE = []
+
+_MOVES = json.load(open('SquareBox_Minimax/moves.json','r'))
+
+_JUMPS = json.load(open('SquareBox_Minimax/jumps.json','r'))
+
+_NEAREST_GOAL = json.load(open('SquareBox_Minimax/dist.json','r'))
 
 class GameState:
-    
+
+    # Initialise the game state.
     def __init__(self):
 
-        self.red = {
-            'positions':[(-3,3), (-3,2), (-3,1), (-3,0)],
-            'goals':{(3,-3), (3,-2), (3,-1), (3,0)},
-            'score':0
-            }
-        self.green = {
-            'positions':[(0,-3), (1,-3), (2,-3), (3,-3)],
-            'goals':{(-3,3), (-2,3), (-1,3), (0,3)},
-            'score':0
-            }
-        self.blue = {
-            'positions':[(3,0),(2,1),(1,2),(0,3)],
-            'goals':{(-3,0),(-2,-1),(-1,-2),(0,-3)},
-            'score':0
-            }
-        self.turns = 0
-        
+        self.boards = {
+            "red":int("0000000000000000000001000000100000010000001000000",2),
+            "green":int("0001111000000000000000000000000000000000000000000",2),
+            "blue":int("0000000000000000000000000001000001000001000001000",2)
+        }
 
-    def getPlayer(self,colour):
-        if colour == "red":
-            return self.red
-        elif colour == 'green':
-            return self.green
-        elif colour == 'blue':
-            return self.blue
-        else:
-            return None
+        self.goals = {
+            "red":{6, 13, 20, 27},
+            "green":{41, 42, 43, 44},
+            "blue":{3, 9, 15, 21}
+        }
 
-    def findTile(self,coor):
-        for i in self.red['positions']:
-            if i == coor:
-                return "red"
-        for i in self.green['positions']:
-            if i == coor:
-                return "green"
-        for i in self.blue['positions']:
-            if i == coor:
-                return "blue"
+        self.scores = {
+            "red":0,
+            "green":0,
+            "blue":0
+        }
+
+        self.exits = {
+            "red":0,
+            "green":0,
+            "blue":0
+        }
+
+        self.weights = [1,0.2,0.2]
+
+    # Function that converts coordinate to bitboard index.
+    def coorToBitboard(self,q,r):
+        # Checks if the coordinate is in range.
+        if (self.isValidMove((q,r))):
+            return int((r+3)*7 + (q+3))
         return None
 
-    def boardToArray(self,state):
-        r = state.red['positions']
-        g = state.green['positions']
-        b = state.blue['positions']
-        
-        arr = []
-        for i in range(-3,4):
-            for j in range(-3,4):
-                if -i-j in range(-3,4):
-                    if (i,j) in r:
-                        arr.append(1)
-                    elif (i,j) in g:
-                        arr.append(2)
-                    elif (i,j) in b:
-                        arr.append(3)
-                    else:
-                        arr.append(0)
-        return arr
+    # Function that converts bitboard index to coordinate.
+    def indexToCoor(self,index):
+        return ((index % 7) - 3,int(index/7) -3)
 
-    def tileDistance(self,a,b):
-        return (abs(a[0] - b[0]) 
+    def ConvertBitboard(self,board, coor = False):
+        index = math.ceil(48 - math.log(board,2))
+        if coor:
+            return self.indexToCoor(index)
+        return index
+
+    def getOccupied(self):
+        return self.boards["red"] | self.boards["green"] | self.boards["blue"]
+
+
+
+
+    # Function that gets all the pieces on the board
+    def getPositions(self, colour):
+        result = []
+
+        # Check if there is a piece on a column
+        for i in range(_VERTICAL_LENGTH):
+            # Skip the column if there's no piece
+            if (_VERTICAL[i] & self.boards[colour]) == 0:
+                continue
+            # Check the rows if there's a piece on a column
+            for j in range(_HORIZONTAL_LENGTH):
+                piece = _HORIZONTAL[j] & self.boards[colour] & _VERTICAL[i]
+                if (piece) == 0:
+                    continue
+                # Add the coordinate of the piece to the result lists
+                result.append((3 - j + 3)* 7 + (i))
+
+        # Return the result
+        return result
+
+    # Function that check if there's a piece on a tile.
+    def findTile(self,index):
+
+        # Create mask of the index
+        mask = 1 << (48 - index)
+
+        # Check if the tile is occupied by a colour.
+        if (self.boards["red"] & mask) != 0:
+            return "red"
+        if (self.boards["green"] & mask) != 0:
+            return "green"
+        if (self.boards["blue"] & mask) != 0:
+            return "blue"
+        return None
+
+    # Get all the available moves on the board including enemies.
+    def getAllMoves(self):
+        moves = []
+        colours = ['red','green','blue']
+        for colour in colours:
+            for move in self.availableMoves(colour):
+                moves.append((move,colour))
+        return moves
+
+    # Get the available moves of all the pieces of the given colour.
+    def availableMoves(self, colour):
+        result = []
+        occupied = self.getOccupied()
+        for index in self.getPositions(colour):
+            # Check if the piece is on top of a goal.
+            if index in self.goals[colour]:
+                result.append(("EXIT",index))
+                break
+
+            for move, board in _MOVES[str(index)].items():
+                if (board & occupied) == 0:
+                    result.append(("MOVE",(index,self.ConvertBitboard(board))))
+                elif move in _JUMPS[str(index)].keys():
+                    if (_JUMPS[str(index)][move] & occupied) == 0:
+                        result.append(("JUMP",(index,self.ConvertBitboard(_JUMPS[str(index)][move]))))
+
+
+                # Return PASS if there's no available move.
+            if not any(result):
+                result.append(("PASS",None))
+        return result
+
+    def isValidMove(self, coor):
+        x = coor[0]
+        y = coor[1]
+        if -3 > x or x > 3:
+            return False
+        if -3 > y or y > 3:
+            return False
+        if -3 > -x-y or -x-y > 3:
+            return False
+        return True
+
+
+    # Function that adds or removes a piece from the board.
+    def addrmPiece(self,lst,coor, add = False):
+        # Convert the coordinate into a bitboard index.
+        index = self.coorToBitboard(coor[0],coor[1])
+        # Construct a bitstring that shows the position of the piece we want to
+        mask = 1 << (48 - index)
+        # If we want to add then return the 'or' of the two bitstrings or else
+        # return the 'exclusive or ' of the two bitstrings to remove the piece.
+        if add:
+            lst |= mask
+        else:
+            lst ^= mask
+
+        return lst
+
+    # Function that checks if there's a piece in between
+    # the landing position and the original position.
+    def checkJumpOver(self, indexes):
+        # Get the tile in between two tiles.
+        midtile = int((indexes[1] - indexes[0]) / 2 + indexes[0])
+
+        # Check if the midtile is occupied.
+        tile = self.findTile(midtile)
+
+        # Return the colour and the coordinate of the midtile if it's occupied
+        # Or else return None.
+        if tile:
+            return (tile,midtile)
+        return None
+
+    def heuristic(self, colour_i):
+        result = 0
+        i = 0
+        colours = ["red", "green", "blue"]
+
+        for colour in colours:
+            # Adds self ave_dist score
+            tmp = 0
+            if self.getPositions(colour):
+                tmp += self.scores[colour]
+                tmp += self.exits[colour]
+
+                #result -= (self.weights[i] * self.aveDist(colour))
+
+            # Make it negative if it's an enemy
+            if colour != colour_i:
+                #average distance heuristic
+                dist = self.aveDist(colour)
+                if dist != 0:
+                    tmp += (1/dist)
+                else:
+                    tmp += 1
+                tmp = -tmp
+
+            else:
+                dist = self.aveDist(colour)
+                if dist != 0:
+                    tmp += (1/dist)
+                else:
+                    tmp += 1
+                tmp *= 2
+            result += tmp
+        return result
+
+
+
+     #Calculates the average distance of pieces of a colour to
+    #their respective closest goal
+    def aveDist(self, colour):
+        ave_dist = 0
+        #Iterate self pieces and for each piece get min dist then sum all
+        for piece in self.getPositions(colour):
+            min_dist = _NEAREST_GOAL[colour][str(piece)]
+            ave_dist += min_dist
+        num_piece = len(self.getPositions(colour))
+        if num_piece != 0:
+             ave_dist = ave_dist/num_piece
+        else:
+            ave_dist = 0
+        return ave_dist
+
+    # Helper function that calculates the distance between two tiles.
+    # Adapted from https://www.redblobgames.com/grids/hexagons.
+    def hex_distance(self,a,b):
+        return (abs(a[0] - b[0])
           + abs(a[0] + a[1] - b[0] - b[1])
           + abs(a[1] - b[1])) / 2
 
-class NeuralNetwork:
-    
-    def __init__(self):
-        self.layers = []
+    # Function that handles all the updates that happen on the board.
+    def updateState(self, colour, action):
 
-    def add_layer(self,layer):
-        self.layers.append(layer)
+        score = 0
+        score_e = 0
 
-    def feed_forward(self, x):
-        for layer in self.layers:
-            x = layer.activate(x)
-        return x
+        # MOVE.
+        if action[0] == "MOVE":
+            self.boards[colour] ^= 1 << (48 - action[1][0])
+            self.boards[colour] |= 1 << (48 - action[1][1])
+            score -= 5
+        # JUMP.
+        if action[0] == "JUMP":
+            # Check if there's a piece in between the jumps.
+            check = self.checkJumpOver(action[1])
+            if check:
+                # Check if the piece is an enemy piece.
+                if (check[0] != colour):
+                    # Flip the piece.
+                    self.boards[check[0]] ^= 1 << (48 - check[1])
+                    self.boards[colour] |= 1 << (48 - check[1])
+                    score_e -= 1
+                    score += 1
+                    self.scores[check[0]] = score_e
 
-    def backprop(self, x, y, learning_rate):
-        result = self.feed_forward(x)
+                # Update the jumped position.
+                score += 1
+                self.boards[colour] ^= 1 << (48 - action[1][0])
+                self.boards[colour] |= 1 << (48 - action[1][1])
 
-        for i in reversed(range(len(self.layers))):
-            layer = self.layers[i]
 
-            if layer == self.layers[-1]:
-                layer.error = y - result
-                layer.delta = layer.error * layer.activate_i(result,True)
-            else:
-                layer_i = self.layers[i+1]
-                layer.error = np.dot(layer_i.weights,layer_i.delta)
-                layer.delta = layer.error * layer.activate_i(layer.last_act,True)
+        # EXIT
+        if action[0] == "EXIT":
+            # Remove the piece from the board and update the player score.
+            self.boards[colour] ^= 1 << (48 - action[1])
+            self.exits[colour] += 1
+            score += 100
 
-        for i in range(len(self.layers)):
-            layer = self.layers[i]
-            inp = np.atleast_2d(x)
-            if i != 0:
-              inp = np.atleast_2d(self.layers[i - 1].last_act)
-            layer.weights += layer.delta * inp.T * learning_rate
+        self.scores[colour] = score
 
-    def predict(self, x):
-        result = self.feed_forward(x)
-        return np.argmax(result)
-
-    def train(self, x,y,learning_rate,epochs):
-        for i in range(epochs):
-            for j in range(len(x)):
-                self.backprop(x[j],y[j],learning_rate)
-
-    def accurarcy(self,y_pred, y_true):
-        return (y_pred == y_true).mean()
-            
-            
-    
-class Layer:
-
-    def __init__(self,numInput,numNodes, activation=None,weights=None, bias = None):
-        
-        if not weights:
-            self.weights = np.random.rand(numInput,numNodes)
-        else:
-            self.weights = weights
-
-        if not bias:
-            self.bias = np.random.rand(numNodes)
-        else:
-            self.bias = bias
-
-        self.activation = activation
-        self.last_act = None
-        self.error = None
-        self.delta = None
-
-    def tanh(x,deriv = False):
-        if deriv:
-            return 1 - x ** 2
-        return np.tanh(x)
-
-    def sigmoid(x,deriv = False):
-        if deriv:
-            return x * (1 - x)
-        return 1/(1+np.exp(-x))
-
-    def reLu(x,deriv = False):
-        if deriv:
-            return np.greater(x,0).astype(int)
-        return np.maximum(0,x)
-
-    def activate(self,x):
-        dt = np.dot(x,self.weights) + self.bias
-        self.last_act = self.activate_i(dt)
-        return self.last_act
-                                                        
-    def activate_i(self,x,deriv = False):
-        
-        if not self.activation:
-            return x
-
-        if self.activation == "sigmoid":
-            return Layer.sigmoid(x,deriv)
-
-        if self.activation == "relu":
-            return Layer.reLu(x,deriv)
-
-        if self.activation == "tanh":
-            return Layer.tanh(x,deriv)
-        return x
-
-    
-            
-    
-    
 class Player:
     def __init__(self, colour):
-        
+
         """
         This method is called once at the beginning of the game to initialise
         your player. You should use this opportunity to set up your own internal
-        representation of the game state, and any other information about the 
+        representation of the game state, and any other information about the
         game state you would like to maintain for the duration of the game.
 
-        The parameter colour will be a string representing the player your 
-        program will play as (Red, Green or Blue). The value will be one of the 
+        The parameter colour will be a string representing the player your
+        program will play as (Red, Green or Blue). The value will be one of the
         strings "red", "green", or "blue" correspondingly.
         """
         # TODO: Set up state representation.
         self.state = GameState()
         self.colour = colour
-        self.goals = self.state.getPlayer(colour)['goals']
 
-        self.nn = NeuralNetwork()
-        self.nn.add_layer(Layer(37,84, 'sigmoid'))
-        self.nn.add_layer(Layer(84,84, 'sigmoid'))
-        self.nn.add_layer(Layer(84,84, 'sigmoid'))
-        self.nn.add_layer(Layer(84,84, 'sigmoid'))
-        self.nn.add_layer(Layer(84,5, 'sigmoid'))
 
-        if all([os.path.isfile('./layer-{0}.txt'.format(i)) for i in range(len(self.nn.layers))]):
-            for i in range(len(self.nn.layers)):
-                self.nn.layers[i].weights = np.loadtxt('layer-{0}.txt'.format(i))
-        
 
     def action(self):
         """
-        This method is called at the beginning of each of your turns to request 
+        This method is called at the beginning of each of your turns to request
         a choice of action from your program.
 
-        Based on the current state of the game, your player should select and 
-        return an allowed action to play on this turn. If there are no allowed 
-        actions, your player must return a pass instead. The action (or pass) 
-        must be represented based on the above instructions for representing 
+        Based on the current state of the game, your player should select and
+        return an allowed action to play on this turn. If there are no allowed
+        actions, your player must return a pass instead. The action (or pass)
+        must be represented based on the above instructions for representing
         actions.
         """
-        evalu = {}
-        if len(self.state.getPlayer(self.colour)['positions']) == 0:
-            return ('PASS',None)
-        
-        for piece in self.state.getPlayer(self.colour)['positions']:
-            for move in self.availableMoves(piece):
-                tmp_state = deepcopy(self.state)
-                if move[0] != "EXIT" and move[0] != "PASS":
-                    tmp_state.getPlayer(self.colour)['positions'].remove(move[1][0])
-                    tmp_state.getPlayer(self.colour)['positions'].append(move[1][1])
 
-                    if any([i in self.goals for i in tmp_state.getPlayer(self.colour)['positions']]):
-                        self.nn.backprop(self.state.boardToArray(tmp_state),4,0.05)
+        result = {}
+        # Find all the available moves for the player.
+        for move in self.state.availableMoves(self.colour):
+            # Update the state, pass the modified state to minimax, then undo.
+            self.saveState(self.state)
+            self.state.updateState(self.colour, move)
+            #cProfile.runctx("self.minimax(self.state, self.colour, 3, True, -sys.maxsize - 1, sys.maxsize)",globals(),locals())
+            value = self.minimax(self.state, self.colour, 2, True, -sys.maxsize - 1, sys.maxsize)
+            self.loadState(self.state)
 
-                    for i in self.goals:
-                        if self.state.tileDistance(move[1][1],i) < self.state.tileDistance(move[1][0],i):
-                            self.nn.backprop(self.state.boardToArray(tmp_state),4,0.05)                  
-                    
-                elif move[0] == "EXIT":
-                    tmp_state.getPlayer(self.colour)['positions'].remove(move[1])
-                evalu[move] = self.nn.predict(self.state.boardToArray(tmp_state))
 
-        largest = max(evalu,key=evalu.get)
-        self.nn.backprop(self.state.boardToArray(tmp_state),2,0.25)
-        self.last_move = largest
+            # Give each state a score.
+            result[move] = value
+        # Return the move with the best score or return PASS if no move is
+        # available.
+        if len(result) != 0:
+            choice = max(result, key=result.get)
+            if choice[0] == 'EXIT':
+                return (choice[0],self.state.indexToCoor(choice[1]))
+            return (choice[0],(self.state.indexToCoor(choice[1][0]),self.state.indexToCoor(choice[1][1])))
+        return ('PASS',None)
 
-        # TODO: Decide what action to take.
-        return largest
-    
+    # Minimax algorithm
+    def minimax(self, state, colour, depth, maxPlayer, a, b):
+
+        # Evaluate the board if it reaches the maximum depth
+        #if depth == 0 or state.winner():
+        if depth == 0:
+
+            return state.heuristic(colour)
+
+        # Check the max
+        if maxPlayer:
+            # Initialise the best value to be negative infinity
+            best_value = -sys.maxsize - 1
+            # Get all the possible moves
+            for move in state.getAllMoves():
+                # Update the state, pass the modified state to the minimax algorithm
+                # with a lower depth, then undo
+                self.saveState(state)
+                state.updateState(move[1],move[0])
+                value = self.minimax(state, colour, depth - 1, False, a, b)
+                self.loadState(state)
+                # Compare the best value and the value it gets from minimax
+                best_value = max(best_value, value)
+
+                # Ignore the branch if alpha is bigger than beta
+                if best_value >= b:
+                    break
+                # Update the alpha value
+                a = max(a, best_value)
+
+
+            return best_value
+        # Check the min
+        else:
+            # Initialise the best value to be positive infinity
+            best_value = sys.maxsize
+            # Get all the possible moves
+            for move in state.getAllMoves():
+                # Update the state, pass the modified state to the minimax algorithm
+                # with a lower depth, then undo
+                self.saveState(state)
+                state.updateState(move[1],move[0])
+                value = self.minimax(state, colour, depth - 1, True, a, b)
+                self.loadState(state)
+                # Compare the best value and the value it gets from minimax
+                best_value = min(best_value, value)
+
+                # Ignore the branch if alpha is bigger than beta
+                if best_value <= a:
+                    break
+
+                # Update the beta value
+                b = min(b, best_value)
+
+            return best_value
+
+    # Save and load states
+    def saveState(self,state):
+        # Store the move.
+        _LAST_MOVE.append({
+            "boards":{"red":state.boards['red'],"green":state.boards['green'],"blue":state.boards['blue']},
+            "scores":{"red":state.scores['red'],"green":state.scores['green'],"blue":state.scores['blue']},
+            "exits":{"red":state.exits['red'],"green":state.exits['green'],"blue":state.exits['blue']},
+        })
+
+
+
+    def loadState(self,state):
+        dic = _LAST_MOVE.pop()
+        state.boards = dic['boards']
+        state.scores = dic['scores']
+        state.exits = dic['exits']
+
 
 
     def update(self, colour, action):
         """
-        This method is called at the end of every turn (including your player’s 
-        turns) to inform your player about the most recent action. You should 
-        use this opportunity to maintain your internal representation of the 
+        This method is called at the end of every turn (including your player’s
+        turns) to inform your player about the most recent action. You should
+        use this opportunity to maintain your internal representation of the
         game state and any other information about the game you are storing.
 
         The parameter colour will be a string representing the player whose turn
-        it is (Red, Green or Blue). The value will be one of the strings "red", 
+        it is (Red, Green or Blue). The value will be one of the strings "red",
         "green", or "blue" correspondingly.
 
-        The parameter action is a representation of the most recent action (or 
+        The parameter action is a representation of the most recent action (or
         pass) conforming to the above in- structions for representing actions.
 
-        You may assume that action will always correspond to an allowed action 
-        (or pass) for the player colour (your method does not need to validate 
+        You may assume that action will always correspond to an allowed action
+        (or pass) for the player colour (your method does not need to validate
         the action/pass against the game rules).
         """
         # TODO: Update state representation in response to action.
-        if action[0] == "MOVE":
-            # Remove the original position and append the new position
-            self.state.getPlayer(colour)['positions'].remove(action[1][0])
-            self.state.getPlayer(colour)['positions'].append(action[1][1])
+        if action[0] == 'EXIT':
+            action = (action[0],self.state.coorToBitboard(action[1][0],action[1][1]))
+        elif action[0] == 'MOVE' or action[0] == "JUMP":
+            action = (action[0],(self.state.coorToBitboard(action[1][0][0],action[1][0][1]),self.state.coorToBitboard(action[1][1][0],action[1][1][1])))
 
-        if action[0] == "JUMP":
-            # Check if there's a piece in between the jumps
-            check = self.checkJumpOver(colour,action[1])
-            if check:
-                # Check if the piece is an enemy piece
-                if (check[0] != colour):
-                    # Flip the piece
-                    self.state.getPlayer(check[0])['positions'].remove(check[1])
-                    self.state.getPlayer(colour)['positions'].append(check[1])
-
-                if (check[0] == self.colour and colour != self.colour):
-                    self.nn.backprop(self.state.boardToArray(self.state), 0, 0.05)
-                elif (check[0] != self.colour and colour == self.colour):
-                    self.nn.backprop(self.state.boardToArray(self.state), 4, 0.05)
-                    
-                
-                # Update the jumped position
-                self.state.getPlayer(colour)['positions'].remove(action[1][0])
-                self.state.getPlayer(colour)['positions'].append(action[1][1])
-
-        if action[0] == "EXIT":
-            # Remove the piece from the board and update the player score
-            self.state.getPlayer(colour)['positions'].remove(action[1])
-            self.state.getPlayer(colour)['score'] += 1
-
-            # Train weight
-            if colour == self.colour:
-                self.nn.backprop(self.state.boardToArray(self.state), 4, 0.05)
-            else:
-                self.nn.backprop(self.state.boardToArray(self.state), 0, 0.05)
-            Logger.save(self.nn.layers)
-            
-        self.state.turns += 1
-        
-
-    def checkJumpOver(self, colour, coordinates):
-        fstpoint = coordinates[0]
-        sndpoint = coordinates[1]
-
-        midtile = ((fstpoint[0] + sndpoint[0])/2,(fstpoint[1] +sndpoint[1])/2)
-
-        tile = self.state.findTile(midtile)
-
-        if tile:
-            return (tile,midtile)
-        return None
-
-    def availableMoves(self,coor):
-        x = coor[0]
-        y = coor[1]
-
-        result = []
-        
-        if (x,y) in self.goals:
-            result.append(("EXIT",(int(x),int(y))))
-            return result
-        
-        # Range adapted from game.py
-        ran = range(-3, +3+1)
-        hexes = {(q,r) for q in ran for r in ran if -q-r in ran}
-        directions = [(-1,0),(0,-1),(1,-1),(1,0),(0,1),(-1,1)]
-        for (a,b) in directions:
-            if (x+a,y+b) in hexes and not self.state.findTile((x+a,y+b)):
-                result.append(("MOVE",((x,y), (int(x+a),int(y+b)))))
-            elif (x+2*a,y+2*b) in hexes and not self.state.findTile((x+2*a,y+2*b)):
-                result.append(("JUMP",((x,y), (int(x+2*a),int(y+2*b)))))
-        
-        if not any(result):
-            result.append(("PASS",None))
-        
-
-                        
-        return result
-
-            
-            
-        
-
-            
-
-        
+        self.state.updateState(colour,action)

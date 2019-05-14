@@ -1,1 +1,1 @@
-from SquareBox.player import Player
+from SquareBox_Minimax.player import Player
