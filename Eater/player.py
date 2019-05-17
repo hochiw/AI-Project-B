@@ -312,27 +312,22 @@ class Player:
         actions.
         """
 
-        result = {}
+        best_move = ('PASS',None)
         # Find all the available moves for the player.
         for move in self.state.availableMoves(self.colour):
             # Update the state, pass the modified state to minimax, then undo.
+            num_piece = len(self.state.getPositions(self.colour))
             self.saveState(self.state)
             self.state.updateState(self.colour, move)
-            #cProfile.runctx("self.minimax(self.state, self.colour, 3, True, -sys.maxsize - 1, sys.maxsize)",globals(),locals())
-            value = self.minimax(self.state, self.colour, 2, True, -sys.maxsize - 1, sys.maxsize)
+            if len(self.state.getPositions(self.colour)) >= num_piece:
+                num_piece = len(self.state.getPositions(self.colour))
+                best_move = move
             self.loadState(self.state)
 
-
-            # Give each state a score.
-            result[move] = value
-        # Return the move with the best score or return PASS if no move is
-        # available.
-        if len(result) != 0:
-            choice = max(result, key=result.get)
-            if choice[0] == 'EXIT':
-                return (choice[0],self.state.indexToCoor(choice[1]))
-            return (choice[0],(self.state.indexToCoor(choice[1][0]),self.state.indexToCoor(choice[1][1])))
-        return ('PASS',None)
+        if best_move[0] == 'EXIT':
+            return (best_move[0],self.state.indexToCoor(best_move[1]))
+        return (best_move[0],(self.state.indexToCoor(best_move[1][0]),self.state.indexToCoor(best_move[1][1])))
+        return best_move
 
     # Minimax algorithm
     def minimax(self, state, colour, depth, maxPlayer, a, b):
