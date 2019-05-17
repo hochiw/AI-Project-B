@@ -13,11 +13,11 @@ _HORIZONTAL_LENGTH = len(_HORIZONTAL)
 
 _LAST_MOVE = []
 
-_MOVES = json.load(open('SquareBox_Minimax/moves.json','r'))
+_MOVES = json.load(open('SquareBox/moves.json','r'))
 
-_JUMPS = json.load(open('SquareBox_Minimax/jumps.json','r'))
+_JUMPS = json.load(open('SquareBox/jumps.json','r'))
 
-_NEAREST_GOAL = json.load(open('SquareBox_Minimax/dist.json','r'))
+_NEAREST_GOAL = json.load(open('SquareBox/dist.json','r'))
 
 class GameState:
 
@@ -193,32 +193,27 @@ class GameState:
             if self.getPositions(colour):
                 tmp += self.scores[colour]
                 tmp += self.exits[colour]
+                #average distance heuristic
 
-                #result -= (self.weights[i] * self.aveDist(colour))
+            dist = self.aveDist(colour)
+            if dist != 0:
+                if dist < 3:
+                    tmp += (3/dist)
+                else:
+                    tmp += (2/dist)
+            else:
+                tmp += 1
 
             # Make it negative if it's an enemy
             if colour != colour_i:
-                #average distance heuristic
-                dist = self.aveDist(colour)
-                if dist != 0:
-                    tmp += (1/dist)
-                else:
-                    tmp += 1
                 tmp = -tmp
-
             else:
-                dist = self.aveDist(colour)
-                if dist != 0:
-                    tmp += (1/dist)
-                else:
-                    tmp += 1
                 tmp *= 2
+
             result += tmp
         return result
 
-
-
-     #Calculates the average distance of pieces of a colour to
+    #Calculates the average distance of pieces of a colour to
     #their respective closest goal
     def aveDist(self, colour):
         ave_dist = 0
