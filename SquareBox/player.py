@@ -7,12 +7,15 @@ _VERTICAL = [int(283691315109952/(2 ** i)) for i in range(7)]
 # Bitboards that represent the horizontal mask
 _HORIZONTAL = [127 * (128 ** i) for i in range(7)]
 
+# Length of the vertical and horizontal magic bitboards
 _VERTICAL_LENGTH = len(_VERTICAL)
 
 _HORIZONTAL_LENGTH = len(_HORIZONTAL)
 
+# List that stores the states
 _LAST_MOVE = []
 
+# Magic bitboards for the movement and heuristic
 _MOVES = json.load(open('SquareBox/moves.json','r'))
 
 _JUMPS = json.load(open('SquareBox/jumps.json','r'))
@@ -24,31 +27,33 @@ class GameState:
     # Initialise the game state.
     def __init__(self):
 
+        # Initialise the bitboard
         self.boards = {
             "red":int("0000000000000000000001000000100000010000001000000",2),
             "green":int("0001111000000000000000000000000000000000000000000",2),
             "blue":int("0000000000000000000000000001000001000001000001000",2)
         }
 
+        # All the goals represented in bit index
         self.goals = {
             "red":{6, 13, 20, 27},
             "green":{41, 42, 43, 44},
             "blue":{3, 9, 15, 21}
         }
 
+        # Score for each player
         self.scores = {
             "red":0,
             "green":0,
             "blue":0
         }
 
+        # Number of exits for each player
         self.exits = {
             "red":0,
             "green":0,
             "blue":0
         }
-
-        self.weights = [1,0.2,0.2]
 
     # Function that converts coordinate to bitboard index.
     def coorToBitboard(self,q,r):
@@ -61,17 +66,19 @@ class GameState:
     def indexToCoor(self,index):
         return ((index % 7) - 3,int(index/7) -3)
 
+    # Function that converts the bitboard to index or coor
     def ConvertBitboard(self,board, coor = False):
+        # Get the index using log2
         index = math.ceil(48 - math.log(board,2))
+        # If the input wants the coordiante then redirect the result to the
+        # indexToCoor function
         if coor:
             return self.indexToCoor(index)
         return index
 
+    # Function that computes the bitboard of the actual board
     def getOccupied(self):
         return self.boards["red"] | self.boards["green"] | self.boards["blue"]
-
-
-
 
     # Function that gets all the pieces on the board
     def getPositions(self, colour):
@@ -112,6 +119,8 @@ class GameState:
     def getAllMoves(self):
         moves = []
         colours = ['red','green','blue']
+        # Get the available moves for each colour and append it
+        # to the moves list
         for colour in colours:
             for move in self.availableMoves(colour):
                 moves.append((move,colour))
@@ -119,30 +128,44 @@ class GameState:
 
     # Get the available moves of all the pieces of the given colour.
     def availableMoves(self, colour):
+        # Initialise the result list and the bitboard
         result = []
         occupied = self.getOccupied()
+
+        # Iterate through the index of all pieces
         for index in self.getPositions(colour):
             # Check if the piece is on top of a goal.
             if index in self.goals[colour]:
                 result.append(("EXIT",index))
-                break
+                continue
 
+            # Extract and iterate through the available moves from
+            #the magic board given the position of the current piece
             for move, board in _MOVES[str(index)].items():
+                # Check if the tile is occupied
                 if (board & occupied) == 0:
                     result.append(("MOVE",(index,self.ConvertBitboard(board))))
+
+                # If it is occupied then check for available jump actions
                 elif move in _JUMPS[str(index)].keys():
+                    # Check if the landing tile is occupied
                     if (_JUMPS[str(index)][move] & occupied) == 0:
+
                         result.append(("JUMP",(index,self.ConvertBitboard(_JUMPS[str(index)][move]))))
 
 
-                # Return PASS if there's no available move.
+            # Return PASS if there's no available move.
             if not any(result):
                 result.append(("PASS",None))
+
         return result
 
+    # Function that checks if a move is a valid move
     def isValidMove(self, coor):
         x = coor[0]
         y = coor[1]
+
+        # Check if the coordinates are in range
         if -3 > x or x > 3:
             return False
         if -3 > y or y > 3:
@@ -169,9 +192,9 @@ class GameState:
 
     # Function that checks if there's a piece in between
     # the landing position and the original position.
-    def checkJumpOver(self, indexes):
+    def checkJumpOver(self, indices):
         # Get the tile in between two tiles.
-        midtile = int((indexes[1] - indexes[0]) / 2 + indexes[0])
+        midtile = int((indices[1] - indices[0]) / 2 + indices[0])
 
         # Check if the midtile is occupied.
         tile = self.findTile(midtile)
@@ -182,41 +205,52 @@ class GameState:
             return (tile,midtile)
         return None
 
+    # The huristic that evaluates the board
     def heuristic(self, colour_i):
         result = 0
         i = 0
         colours = ["red", "green", "blue"]
 
+        # Iterate through each colour
         for colour in colours:
-            # Adds self ave_dist score
+
+            # Initialise the temporary score variable
             tmp = 0
 
-            if self.getPositions(colour):
-                if len(self.getPositions(colour)) + self.exits[colour] < 4:
-                    tmp += self.scores[colour] * 10
-                    tmp -= self.exits[colour] * 10000
-                else:
-                    tmp += self.scores[colour]
-                    tmp += self.exits[colour]
-                #average distance heuristic
+            # Calculate the score for different situations
+            if len(self.getPositions(colour)) + self.exits[colour] < 4:
+                tmp += self.scores[colour] * 10
+                tmp -= self.exits[colour] * 10000
+            else:
+                tmp += self.scores[colour]
+                tmp += self.exits[colour]
 
-            dist = self.aveDist(colour)
+            # Check if there's any piece on the board
+            if self.getPositions(colour):
+
+                # Find the average distance between the pieces and the goals
+                dist = self.aveDist(colour)
+
+            # Convert the distance to scores depending on the situation
             if dist != 0:
-                #if dist < 3:
-                #    tmp += (3/dist)
-                #else:
-                #    tmp += (2/dist)
-                tmp += (2/dist)
+                if dist < 3:
+                    tmp += (3/dist)
+                else:
+                    tmp += (2/dist)
             else:
                 tmp += 1
 
-            # Make it negative if it's an enemy
+            # Make it negative if it's an enemy and multiply by 2
+            # if it is the player because the 2 enemies are treated as one
+            # so we need the balance out the scores
+
             if colour != colour_i:
                 tmp = -tmp
             else:
                 tmp *= 2
 
             result += tmp
+        # Return the score
         return result
 
     #Calculates the average distance of pieces of a colour to
@@ -225,13 +259,20 @@ class GameState:
         ave_dist = 0
         #Iterate self pieces and for each piece get min dist then sum all
         for piece in self.getPositions(colour):
+            # Get the distance between a piece and the nearest goal
+            # using the magic bitboards
             min_dist = _NEAREST_GOAL[colour][str(piece)]
             ave_dist += min_dist
+
+        # Get the number of pieces on the board
         num_piece = len(self.getPositions(colour))
+
+        # Calculate and return the average distance
         if num_piece != 0:
              ave_dist = ave_dist/num_piece
         else:
             ave_dist = 0
+
         return ave_dist
 
     # Helper function that calculates the distance between two tiles.
@@ -244,37 +285,49 @@ class GameState:
     # Function that handles all the updates that happen on the board.
     def updateState(self, colour, action):
 
+        # Intialise the turn-based score variables
         score = 0
-        score_e = 0
 
         # MOVE.
         if action[0] == "MOVE":
             self.boards[colour] ^= 1 << (48 - action[1][0])
             self.boards[colour] |= 1 << (48 - action[1][1])
+
+            # Punish the player for moving instead of jumping
             score -= 5
+
         # JUMP.
         if action[0] == "JUMP":
+
             # Check if there's a piece in between the jumps.
             check = self.checkJumpOver(action[1])
+
             if check:
                 # Check if the piece is an enemy piece.
+
                 if (check[0] != colour):
                     # Flip the piece.
                     self.boards[check[0]] ^= 1 << (48 - check[1])
                     self.boards[colour] |= 1 << (48 - check[1])
-                    score_e -= 1
+
+                    # Score given to the player for flipping a piece
                     score += 1
-                    self.scores[check[0]] = score_e
+
+                    # Negative score for the player who gets flipped
+                    self.scores[check[0]] = -1
+
+                # Extra score for jumping instead of moving
+                score += 1
 
                 # Update the jumped position.
-                score += 1
                 self.boards[colour] ^= 1 << (48 - action[1][0])
                 self.boards[colour] |= 1 << (48 - action[1][1])
 
 
         # EXIT
         if action[0] == "EXIT":
-            # Remove the piece from the board and update the player score.
+            # Remove the piece from the board and update
+            # the player score and exit value.
             self.boards[colour] ^= 1 << (48 - action[1])
             self.exits[colour] += 1
             score += 100
@@ -318,27 +371,32 @@ class Player:
             # Update the state, pass the modified state to minimax, then undo.
             self.saveState(self.state)
             self.state.updateState(self.colour, move)
-            #cProfile.runctx("self.minimax(self.state, self.colour, 3, True, -sys.maxsize - 1, sys.maxsize)",globals(),locals())
             value = self.minimax(self.state, self.colour, 2, True, -sys.maxsize - 1, sys.maxsize)
             self.loadState(self.state)
 
 
             # Give each state a score.
             result[move] = value
-        # Return the move with the best score or return PASS if no move is
-        # available.
+
+        # Check if result list is not empty
         if len(result) != 0:
+            # Select the move with the highest score
             choice = max(result, key=result.get)
+
+            # Check whether the move is an exit move
+            # Then format it differently
             if choice[0] == 'EXIT':
                 return (choice[0],self.state.indexToCoor(choice[1]))
+
             return (choice[0],(self.state.indexToCoor(choice[1][0]),self.state.indexToCoor(choice[1][1])))
+
+        # Return pass if no available is found
         return ('PASS',None)
 
     # Minimax algorithm
     def minimax(self, state, colour, depth, maxPlayer, a, b):
 
         # Evaluate the board if it reaches the maximum depth
-        #if depth == 0 or state.winner():
         if depth == 0:
 
             return state.heuristic(colour)
@@ -364,8 +422,8 @@ class Player:
                 # Update the alpha value
                 a = max(a, best_value)
 
-
             return best_value
+
         # Check the min
         else:
             # Initialise the best value to be positive infinity
@@ -399,15 +457,11 @@ class Player:
             "exits":{"red":state.exits['red'],"green":state.exits['green'],"blue":state.exits['blue']},
         })
 
-
-
     def loadState(self,state):
         dic = _LAST_MOVE.pop()
         state.boards = dic['boards']
         state.scores = dic['scores']
         state.exits = dic['exits']
-
-
 
     def update(self, colour, action):
         """
@@ -428,9 +482,12 @@ class Player:
         the action/pass against the game rules).
         """
         # TODO: Update state representation in response to action.
+
+        # Convert the coordinates to indices
         if action[0] == 'EXIT':
             action = (action[0],self.state.coorToBitboard(action[1][0],action[1][1]))
         elif action[0] == 'MOVE' or action[0] == "JUMP":
             action = (action[0],(self.state.coorToBitboard(action[1][0][0],action[1][0][1]),self.state.coorToBitboard(action[1][1][0],action[1][1][1])))
 
+        # Update the state with the formatted move 
         self.state.updateState(colour,action)
