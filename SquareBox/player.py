@@ -55,6 +55,20 @@ class GameState:
             "blue":0
         }
 
+        # Number of flips for each player
+        self.flips = {
+            "red":0,
+            "green":0,
+            "blue":0
+        }
+
+        # Number of pieces for each player
+        self.piece_num = {
+            "red":4,
+            "green":4,
+            "blue":4
+        }
+
     # Function that converts coordinate to bitboard index.
     def coorToBitboard(self,q,r):
         # Checks if the coordinate is in range.
@@ -217,28 +231,27 @@ class GameState:
             # Initialise the temporary score variable
             tmp = 0
 
-            # Calculate the score for different situations
-            if len(self.getPositions(colour)) + self.exits[colour] < 4:
-                tmp += self.scores[colour] * 10
-                tmp -= self.exits[colour] * 10000
-            else:
-                tmp += self.scores[colour]
-                tmp += self.exits[colour]
+                
+
+            # Calculate the score
+            tmp += self.flips[colour] * 1000
+            tmp += self.scores[colour]
+            tmp += self.exits[colour]
 
             # Check if there's any piece on the board
-            if self.getPositions(colour):
+            if self.piece_num[colour] > 0:
 
-                # Find the average distance between the pieces and the goals
+              #  # Find the average distance between the pieces and the goals
                 dist = self.aveDist(colour)
 
-            # Convert the distance to scores depending on the situation
-            if dist != 0:
-                if dist < 3:
-                    tmp += (3/dist)
+                # Convert the distance to scores depending on the situation
+                if dist != 0:
+                    if dist < 3:
+                        tmp += (3/dist)
+                    else:
+                        tmp += (2/dist)   
                 else:
-                    tmp += (2/dist)
-            else:
-                tmp += 1
+                    tmp += 1
 
             # Make it negative if it's an enemy and multiply by 2
             # if it is the player because the 2 enemies are treated as one
@@ -257,8 +270,10 @@ class GameState:
     #their respective closest goal
     def aveDist(self, colour):
         ave_dist = 0
+        
         #Iterate self pieces and for each piece get min dist then sum all
         for piece in self.getPositions(colour):
+            
             # Get the distance between a piece and the nearest goal
             # using the magic bitboards
             min_dist = _NEAREST_GOAL[colour][str(piece)]
@@ -312,9 +327,12 @@ class GameState:
 
                     # Score given to the player for flipping a piece
                     score += 1
+                    self.flips[colour] = 1
+                    self.piece_num[colour] += 1
 
                     # Negative score for the player who gets flipped
                     self.scores[check[0]] = -1
+                    self.piece_num[check[0]] -= 1
 
                 # Extra score for jumping instead of moving
                 score += 1
@@ -330,7 +348,9 @@ class GameState:
             # the player score and exit value.
             self.boards[colour] ^= 1 << (48 - action[1])
             self.exits[colour] += 1
+            self.piece_num[colour] -= 1
             score += 100
+            
 
         self.scores[colour] = score
 
@@ -455,6 +475,7 @@ class Player:
             "boards":{"red":state.boards['red'],"green":state.boards['green'],"blue":state.boards['blue']},
             "scores":{"red":state.scores['red'],"green":state.scores['green'],"blue":state.scores['blue']},
             "exits":{"red":state.exits['red'],"green":state.exits['green'],"blue":state.exits['blue']},
+            "flips":{"red":state.flips['red'],"green":state.flips["green"],"blue":state.flips["blue"]}
         })
 
     def loadState(self,state):
@@ -462,6 +483,7 @@ class Player:
         state.boards = dic['boards']
         state.scores = dic['scores']
         state.exits = dic['exits']
+        state.flips = dic['flips']
 
     def update(self, colour, action):
         """
